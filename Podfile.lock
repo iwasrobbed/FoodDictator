@@ -12,12 +12,14 @@ PODS:
   - QuadratTouch (1.1.1)
   - RPCircularProgress (0.1.1)
   - SnapKit (0.20.0)
+  - SwiftRandom (0.1.7)
 
 DEPENDENCIES:
   - FBSDKLoginKit
   - QuadratTouch
   - RPCircularProgress
   - SnapKit
+  - SwiftRandom
 
 SPEC CHECKSUMS:
   Bolts: a0058fa3b331c5a1e4402d534f2dae36dbff31e4
@@ -26,5 +28,6 @@ SPEC CHECKSUMS:
   QuadratTouch: 296d83c63a4328f6f40af9fc728fe24f0e3b00d4
   RPCircularProgress: 63f281296034d58478edb07fab76a6296e099e74
   SnapKit: 5fce3c1bbbf1fbd31de9aa92f33eb9fa03f15650
+  SwiftRandom: a03b68cbcda1b03d0fef5a1b87296f9500b6eac3
 
 COCOAPODS: 0.39.0

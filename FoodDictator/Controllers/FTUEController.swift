@@ -25,16 +25,16 @@ class FTUEController: BaseController {
 
     // MARK: - Private Properties
 
-    lazy private var dictatorLogo: UIImageView = {
+    private let dictatorLogo: UIImageView = {
         return UIImageView(image: UIImage(named: "LaunchLogo"))
     }()
     private var logoCenterYConstraint: Constraint?
 
-    lazy private var oneMealLabel: UILabel = {
+    private let oneMealLabel: UILabel = {
         return UILabel.dictatorHeader4Label(FTUELocalizations.OneMealToRuleThemAll)
     }()
 
-    lazy private var gamesBeginLabel: UILabel = {
+    private let gamesBeginLabel: UILabel = {
         return UILabel.dictatorLabel(FTUELocalizations.LetTheGamesBegin, font: .dictatorRegular(20), color: .dictatorGrayText(), alignment: .Center)
     }()
     

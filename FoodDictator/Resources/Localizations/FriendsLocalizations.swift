@@ -11,5 +11,6 @@ import Foundation
 public struct FriendsLocalizations {
 
     static let FEASTINGWITH = NSLocalizedString("FEASTING WITH...", comment: "Eating food with someone in a feast-like manner")
+    static let SearchPlaceholder = NSLocalizedString("Search by name", comment: "Find someone by their name")
     
 }

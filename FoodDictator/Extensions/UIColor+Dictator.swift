@@ -16,8 +16,10 @@ extension UIColor {
     public class func dictatorBlack() -> UIColor           { return color(0x36373C) }
     public class func dictatorPink() -> UIColor            { return color(0xE95D8C) }
     public class func dictatorBlue() -> UIColor            { return color(0x56C7FF) }
-    public class func dictatorCellSelection() -> UIColor   { return color(0xF1F1F1)}
+    public class func dictatorCellSelection() -> UIColor   { return color(0xE95D8C, 0.68)}
+    public class func dictatorLightGray() -> UIColor       { return color(0xF1F1F1) }
     public class func dictatorGrayText() -> UIColor        { return color(0x9B9B9B) }
+    public class func dictatorLine() -> UIColor            { return color(0xDBDBDB) }
 
     public class func dictatorTextField() -> UIColor        { return color(0xFAFAFA) }
     public class func dictatorTextFieldBorder() -> UIColor  { return color(0xE3E3E3) }

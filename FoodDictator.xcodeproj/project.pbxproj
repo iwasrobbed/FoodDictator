@@ -14,6 +14,10 @@
 		D45757F11CE240C800802AE5 /* FriendsLocalizations.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45757F01CE240C800802AE5 /* FriendsLocalizations.swift */; };
 		D45757F31CE2421C00802AE5 /* DictatorLocalizations.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45757F21CE2421C00802AE5 /* DictatorLocalizations.swift */; };
 		D45757F51CE2422400802AE5 /* RestaurantLocalizations.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45757F41CE2422400802AE5 /* RestaurantLocalizations.swift */; };
+		D45757F91CE24D2800802AE5 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45757F81CE24D2800802AE5 /* TextField.swift */; };
+		D45757FC1CE24E2C00802AE5 /* ChooseHumanCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45757FB1CE24E2C00802AE5 /* ChooseHumanCell.swift */; };
+		D45757FE1CE24E3900802AE5 /* TableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45757FD1CE24E3900802AE5 /* TableCell.swift */; };
+		D45758001CE2506B00802AE5 /* Human.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45757FF1CE2506B00802AE5 /* Human.swift */; };
 		D45B7FE31CE2318000CDFF85 /* LoggedOutLocalizations.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45B7FE21CE2318000CDFF85 /* LoggedOutLocalizations.swift */; };
 		D45B7FE81CE233E300CDFF85 /* Texta-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = D45B7FE51CE233E300CDFF85 /* Texta-Bold.otf */; };
 		D45B7FE91CE233E300CDFF85 /* Texta-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = D45B7FE61CE233E300CDFF85 /* Texta-Medium.otf */; };
@@ -40,6 +44,10 @@
 		D45757F01CE240C800802AE5 /* FriendsLocalizations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsLocalizations.swift; sourceTree = "<group>"; };
 		D45757F21CE2421C00802AE5 /* DictatorLocalizations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictatorLocalizations.swift; sourceTree = "<group>"; };
 		D45757F41CE2422400802AE5 /* RestaurantLocalizations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantLocalizations.swift; sourceTree = "<group>"; };
+		D45757F81CE24D2800802AE5 /* TextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
+		D45757FB1CE24E2C00802AE5 /* ChooseHumanCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseHumanCell.swift; sourceTree = "<group>"; };
+		D45757FD1CE24E3900802AE5 /* TableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableCell.swift; sourceTree = "<group>"; };
+		D45757FF1CE2506B00802AE5 /* Human.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Human.swift; sourceTree = "<group>"; };
 		D45B7FE21CE2318000CDFF85 /* LoggedOutLocalizations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoggedOutLocalizations.swift; sourceTree = "<group>"; };
 		D45B7FE51CE233E300CDFF85 /* Texta-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Texta-Bold.otf"; sourceTree = "<group>"; };
 		D45B7FE61CE233E300CDFF85 /* Texta-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Texta-Medium.otf"; sourceTree = "<group>"; };
@@ -85,6 +93,15 @@
 				C3A67CF5214EC5F678BB78D7 /* Pods.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		D45757FA1CE24E2C00802AE5 /* Table Cells */ = {
+			isa = PBXGroup;
+			children = (
+				D45757FB1CE24E2C00802AE5 /* ChooseHumanCell.swift */,
+				D45757FD1CE24E3900802AE5 /* TableCell.swift */,
+			);
+			path = "Table Cells";
 			sourceTree = "<group>";
 		};
 		D45B7FE41CE233E300CDFF85 /* Fonts */ = {
@@ -165,6 +182,7 @@
 		D49A95701CE19C0E000ECD1A /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				D45757FF1CE2506B00802AE5 /* Human.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -198,6 +216,8 @@
 			isa = PBXGroup;
 			children = (
 				D45B7FEB1CE2352600CDFF85 /* Launch */,
+				D45757FA1CE24E2C00802AE5 /* Table Cells */,
+				D45757F81CE24D2800802AE5 /* TextField.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -337,12 +357,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D45757FE1CE24E3900802AE5 /* TableCell.swift in Sources */,
 				D45757EF1CE239FD00802AE5 /* RestaurantsController.swift in Sources */,
 				D49A95821CE22495000ECD1A /* UILabel+Dictator.swift in Sources */,
 				D49A95771CE19C0E000ECD1A /* FTUEController.swift in Sources */,
 				D49A95841CE2249F000ECD1A /* UIButton+Dictator.swift in Sources */,
 				D45757F51CE2422400802AE5 /* RestaurantLocalizations.swift in Sources */,
 				D49A95801CE2248C000ECD1A /* UIColor+Dictator.swift in Sources */,
+				D45758001CE2506B00802AE5 /* Human.swift in Sources */,
+				D45757FC1CE24E2C00802AE5 /* ChooseHumanCell.swift in Sources */,
+				D45757F91CE24D2800802AE5 /* TextField.swift in Sources */,
 				D49A95881CE224CD000ECD1A /* UIView+Dictator.swift in Sources */,
 				D45757F31CE2421C00802AE5 /* DictatorLocalizations.swift in Sources */,
 				D49A95861CE224B6000ECD1A /* UIFont+Dictator.swift in Sources */,

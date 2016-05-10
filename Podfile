@@ -17,3 +17,6 @@ pod 'SnapKit'
 
 # UI & Animations
 pod 'RPCircularProgress'
+
+# Random data (for prototyping)
+pod 'SwiftRandom'
