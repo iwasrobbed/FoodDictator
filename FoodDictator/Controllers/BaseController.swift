@@ -62,7 +62,7 @@ private extension BaseController {
         self.navigationController?.navigationBarHidden = true
         self.automaticallyAdjustsScrollViewInsets = false
 
-        view.backgroundColor = UIColor.dictatorWhite()
+        view.backgroundColor = .dictatorWhite()
     }
 
     // MARK: - Custom Navigation Bar

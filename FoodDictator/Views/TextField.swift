@@ -71,7 +71,7 @@ class TextField : UIView {
     // We do this since we need to wait for auto layout to draw
     override func drawRect(rect: CGRect) {
         let borderColor = UIColor.dictatorTextFieldBorder()
-        let borderWidth : CGFloat = 1
+        let borderWidth: CGFloat = 1
 
         if let cornerRect = roundedCornerStyle!.toRectCorner() {
             container.round(cornerRect, radius: 10, borderColor: borderColor, borderWidth: borderWidth)

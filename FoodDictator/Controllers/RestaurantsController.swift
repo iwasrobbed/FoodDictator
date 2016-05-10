@@ -33,7 +33,7 @@ private extension RestaurantsController {
 
     func setupView() {
         // TODO: Set specific city or "nearby" one day
-        let title = String(format: RestaurantLocalizations.CityRestaurantsFormat, arguments: ["SJ"])
+        let title = String(format: RestaurantLocalizations.CityRestaurantsFormat, arguments: ["SJ"]).uppercaseString
         setupNavigation(title)
     }
     

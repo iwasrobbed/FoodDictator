@@ -17,7 +17,7 @@ extension UILabel {
     }
 
     class func dictatorHeader4Label(title: String) -> UILabel {
-        return dictatorLabel(title, font: .dictatorBold(24), alignment: .Center)
+        return dictatorLabel(title, font: .dictatorRegular(28), alignment: .Center)
     }
 
     class func dictatorRegularLabel(title: String) -> UILabel {

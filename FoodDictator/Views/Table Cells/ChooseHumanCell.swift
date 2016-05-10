@@ -19,7 +19,7 @@ class ChooseHumanCell: TableCell {
     let photoView = UIImageView()
     private let photoDiameter: CGFloat = 40
 
-    let nameLabel = UILabel.dictatorLabel("", font: unselectedFont, color: UIColor.dictatorBlack(), alignment: .Left)
+    let nameLabel = UILabel.dictatorLabel("", font: unselectedFont, color: .dictatorBlack(), alignment: .Left)
     lazy private var radioButton: UIButton = {
         let button = UIButton.dictatorImageOnly(UIImage(named:"UnselectedRadio")!, target: self, action: #selector(ChooseHumanCell.toggleSelection))
         button.setImage(UIImage(named: "SelectedRadio"), forState: .Selected)
@@ -29,7 +29,7 @@ class ChooseHumanCell: TableCell {
     var humanSelected = false {
         didSet {
             nameLabel.font = humanSelected ? ChooseHumanCell.selectedFont : ChooseHumanCell.unselectedFont
-            backgroundColor = humanSelected ? .dictatorLightGray() : UIColor.dictatorWhite()
+            backgroundColor = humanSelected ? .dictatorLightGray() : .dictatorWhite()
             radioButton.selected = humanSelected
         }
     }
@@ -70,8 +70,8 @@ private extension ChooseHumanCell {
         contentView.addSubview(nameLabel)
         contentView.addSubview(radioButton)
 
-        photoView.backgroundColor = UIColor.grayColor()
-        photoView.fullyRound(photoDiameter, borderColor: UIColor.dictatorLine(), borderWidth: 0.5)
+        photoView.backgroundColor = .grayColor()
+        photoView.fullyRound(photoDiameter, borderColor: .dictatorLine(), borderWidth: 0.5)
 
         photoView.snp_makeConstraints { (make) in
             make.size.equalTo(photoDiameter)

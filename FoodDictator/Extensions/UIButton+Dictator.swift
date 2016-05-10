@@ -112,8 +112,9 @@ private extension UIButton {
     class func dictatorGenericButton(title: String, target: AnyObject, action: Selector) -> UIButton {
         let button = UIButton()
         button.addTarget(target, action: action, forControlEvents: .TouchUpInside)
-        button.setTitleColor(UIColor.dictatorWhite(), forState: .Normal)
+        button.setTitleColor(.dictatorWhite(), forState: .Normal)
         button.setTitle(title, forState: .Normal)
+        button.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 2, 0)
         return button
     }
     

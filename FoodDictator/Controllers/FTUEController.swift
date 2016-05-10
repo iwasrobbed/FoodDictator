@@ -100,27 +100,24 @@ private extension FTUEController {
     // MARK: - Animation
 
     func animateView() {
+        view.layoutSubviews()
 
-        // Delay here to have a smooth transition from launch screen
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(0.5 * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) {
-            self.logoCenterYConstraint!.updateOffset(-50)
-            self.dictatorLogo.setNeedsLayout()
+        self.logoCenterYConstraint!.updateOffset(-50)
+        self.dictatorLogo.setNeedsLayout()
 
-            UIView.animateWithDuration(0.5, delay: 0,
-                                       usingSpringWithDamping: 0.5,
-                                       initialSpringVelocity: 0.8,
-                                       options: .CurveEaseIn,
-                                       animations: { () -> Void in
-                                        self.dictatorLogo.layoutIfNeeded()
-                }, completion: nil)
-
-            UIView.animateWithDuration(0.3, delay: 0, options: .CurveEaseIn, animations: { () -> Void in
-                self.signInButton.alpha = 1
-                self.oneMealLabel.alpha = 1
-                self.gamesBeginLabel.alpha = 1
+        UIView.animateWithDuration(1, delay: 0.5,
+                                   usingSpringWithDamping: 0.5,
+                                   initialSpringVelocity: 0.8,
+                                   options: .CurveEaseIn,
+                                   animations: { () -> Void in
+                                    self.dictatorLogo.layoutIfNeeded()
             }, completion: nil)
-        }
 
+        UIView.animateWithDuration(0.3, delay: 0.75, options: .CurveEaseIn, animations: { () -> Void in
+            self.signInButton.alpha = 1
+            self.oneMealLabel.alpha = 1
+            self.gamesBeginLabel.alpha = 1
+        }, completion: nil)
     }
 
     // MARK: - Actions
