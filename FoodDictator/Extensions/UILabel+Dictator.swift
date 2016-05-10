@@ -22,7 +22,7 @@ extension UILabel {
 
     class func dictatorRegularLabel(title: String) -> UILabel {
         let label = dictatorLabel(title, font: .dictatorRegular(18))
-        label.lineBreakMode = .ByTruncatingMiddle
+        label.lineBreakMode = .ByTruncatingTail
         label.numberOfLines = 1
         label.sizeToFit()
         return label

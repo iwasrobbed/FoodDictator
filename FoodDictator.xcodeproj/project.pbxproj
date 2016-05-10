@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		436DA59D235C9497AA297676 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DE9740E2C5F8F7E54754199 /* Pods.framework */; };
+		D45757EB1CE239DC00802AE5 /* ChooseFriendsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45757EA1CE239DC00802AE5 /* ChooseFriendsController.swift */; };
+		D45757ED1CE239E800802AE5 /* DictatorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45757EC1CE239E800802AE5 /* DictatorController.swift */; };
+		D45757EF1CE239FD00802AE5 /* RestaurantsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45757EE1CE239FD00802AE5 /* RestaurantsController.swift */; };
+		D45757F11CE240C800802AE5 /* FriendsLocalizations.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45757F01CE240C800802AE5 /* FriendsLocalizations.swift */; };
+		D45757F31CE2421C00802AE5 /* DictatorLocalizations.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45757F21CE2421C00802AE5 /* DictatorLocalizations.swift */; };
+		D45757F51CE2422400802AE5 /* RestaurantLocalizations.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45757F41CE2422400802AE5 /* RestaurantLocalizations.swift */; };
 		D45B7FE31CE2318000CDFF85 /* LoggedOutLocalizations.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45B7FE21CE2318000CDFF85 /* LoggedOutLocalizations.swift */; };
 		D45B7FE81CE233E300CDFF85 /* Texta-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = D45B7FE51CE233E300CDFF85 /* Texta-Bold.otf */; };
 		D45B7FE91CE233E300CDFF85 /* Texta-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = D45B7FE61CE233E300CDFF85 /* Texta-Medium.otf */; };
@@ -22,13 +28,18 @@
 		D49A95861CE224B6000ECD1A /* UIFont+Dictator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49A95851CE224B6000ECD1A /* UIFont+Dictator.swift */; };
 		D49A95881CE224CD000ECD1A /* UIView+Dictator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49A95871CE224CD000ECD1A /* UIView+Dictator.swift */; };
 		D49A958A1CE224DA000ECD1A /* BaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49A95891CE224DA000ECD1A /* BaseController.swift */; };
-		D49A958C1CE22548000ECD1A /* BaseController+KeyboardAvoidance.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49A958B1CE22548000ECD1A /* BaseController+KeyboardAvoidance.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0C20BC25AF38A128097E671D /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		2DE9740E2C5F8F7E54754199 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3A67CF5214EC5F678BB78D7 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		D45757EA1CE239DC00802AE5 /* ChooseFriendsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseFriendsController.swift; sourceTree = "<group>"; };
+		D45757EC1CE239E800802AE5 /* DictatorController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictatorController.swift; sourceTree = "<group>"; };
+		D45757EE1CE239FD00802AE5 /* RestaurantsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantsController.swift; sourceTree = "<group>"; };
+		D45757F01CE240C800802AE5 /* FriendsLocalizations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsLocalizations.swift; sourceTree = "<group>"; };
+		D45757F21CE2421C00802AE5 /* DictatorLocalizations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictatorLocalizations.swift; sourceTree = "<group>"; };
+		D45757F41CE2422400802AE5 /* RestaurantLocalizations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantLocalizations.swift; sourceTree = "<group>"; };
 		D45B7FE21CE2318000CDFF85 /* LoggedOutLocalizations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoggedOutLocalizations.swift; sourceTree = "<group>"; };
 		D45B7FE51CE233E300CDFF85 /* Texta-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Texta-Bold.otf"; sourceTree = "<group>"; };
 		D45B7FE61CE233E300CDFF85 /* Texta-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Texta-Medium.otf"; sourceTree = "<group>"; };
@@ -45,7 +56,6 @@
 		D49A95851CE224B6000ECD1A /* UIFont+Dictator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+Dictator.swift"; sourceTree = "<group>"; };
 		D49A95871CE224CD000ECD1A /* UIView+Dictator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Dictator.swift"; sourceTree = "<group>"; };
 		D49A95891CE224DA000ECD1A /* BaseController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseController.swift; sourceTree = "<group>"; };
-		D49A958B1CE22548000ECD1A /* BaseController+KeyboardAvoidance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "BaseController+KeyboardAvoidance.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +143,9 @@
 			children = (
 				D49A95891CE224DA000ECD1A /* BaseController.swift */,
 				D49A956E1CE19C0E000ECD1A /* FTUEController.swift */,
+				D45757EA1CE239DC00802AE5 /* ChooseFriendsController.swift */,
+				D45757EC1CE239E800802AE5 /* DictatorController.swift */,
+				D45757EE1CE239FD00802AE5 /* RestaurantsController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -140,7 +153,6 @@
 		D49A956F1CE19C0E000ECD1A /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				D49A958B1CE22548000ECD1A /* BaseController+KeyboardAvoidance.swift */,
 				D49A95831CE2249F000ECD1A /* UIButton+Dictator.swift */,
 				D49A957F1CE2248C000ECD1A /* UIColor+Dictator.swift */,
 				D49A95851CE224B6000ECD1A /* UIFont+Dictator.swift */,
@@ -193,7 +205,10 @@
 		D49A957E1CE19CBD000ECD1A /* Localizations */ = {
 			isa = PBXGroup;
 			children = (
+				D45757F21CE2421C00802AE5 /* DictatorLocalizations.swift */,
+				D45757F01CE240C800802AE5 /* FriendsLocalizations.swift */,
 				D45B7FE21CE2318000CDFF85 /* LoggedOutLocalizations.swift */,
+				D45757F41CE2422400802AE5 /* RestaurantLocalizations.swift */,
 			);
 			path = Localizations;
 			sourceTree = "<group>";
@@ -322,16 +337,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D49A958C1CE22548000ECD1A /* BaseController+KeyboardAvoidance.swift in Sources */,
+				D45757EF1CE239FD00802AE5 /* RestaurantsController.swift in Sources */,
 				D49A95821CE22495000ECD1A /* UILabel+Dictator.swift in Sources */,
 				D49A95771CE19C0E000ECD1A /* FTUEController.swift in Sources */,
 				D49A95841CE2249F000ECD1A /* UIButton+Dictator.swift in Sources */,
+				D45757F51CE2422400802AE5 /* RestaurantLocalizations.swift in Sources */,
 				D49A95801CE2248C000ECD1A /* UIColor+Dictator.swift in Sources */,
 				D49A95881CE224CD000ECD1A /* UIView+Dictator.swift in Sources */,
+				D45757F31CE2421C00802AE5 /* DictatorLocalizations.swift in Sources */,
 				D49A95861CE224B6000ECD1A /* UIFont+Dictator.swift in Sources */,
 				D49A958A1CE224DA000ECD1A /* BaseController.swift in Sources */,
+				D45757F11CE240C800802AE5 /* FriendsLocalizations.swift in Sources */,
 				D49A955C1CE19B22000ECD1A /* AppDelegate.swift in Sources */,
 				D45B7FE31CE2318000CDFF85 /* LoggedOutLocalizations.swift in Sources */,
+				D45757EB1CE239DC00802AE5 /* ChooseFriendsController.swift in Sources */,
+				D45757ED1CE239E800802AE5 /* DictatorController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

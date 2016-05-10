@@ -35,3 +35,4 @@ to install any 3rd party dependencies.
 
 - Need to implement proper font scaling.
 - Unit tests should be written.
+- Hook up keyboard avoidance.

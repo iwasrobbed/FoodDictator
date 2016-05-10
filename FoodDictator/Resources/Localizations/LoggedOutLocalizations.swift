@@ -8,8 +8,10 @@
 
 import Foundation
 
-public struct SignInUpLocalizations {
+public struct FTUELocalizations {
 
+    static let OneMealToRuleThemAll = NSLocalizedString("One meal, to rule them all.", comment: "")
+    static let LetTheGamesBegin = NSLocalizedString("Let the games begin:", comment: "")
     static let FACEBOOK = NSLocalizedString("FACEBOOK", comment: "")
 
 }

@@ -63,8 +63,9 @@ extension UIButton {
      - returns: A Facebook login button
      */
     class func dictatorFacebook(target: AnyObject, action: Selector) -> UIButton {
-        let button = dictatorRounded(.Pink, title: SignInUpLocalizations.FACEBOOK, target: target, action: action)
+        let button = dictatorRounded(.Pink, title: FTUELocalizations.FACEBOOK, target: target, action: action)
         button.setImage(UIImage(named: "FBLogo"), forState: .Normal)
+        button.adjustsImageWhenHighlighted = false
         button.imageEdgeInsets = UIEdgeInsetsMake(10, 30, 10, 80)
         return button
     }
