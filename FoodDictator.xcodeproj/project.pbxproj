@@ -1,0 +1,474 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		436DA59D235C9497AA297676 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DE9740E2C5F8F7E54754199 /* Pods.framework */; };
+		D45B7FE31CE2318000CDFF85 /* LoggedOutLocalizations.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45B7FE21CE2318000CDFF85 /* LoggedOutLocalizations.swift */; };
+		D45B7FE81CE233E300CDFF85 /* Texta-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = D45B7FE51CE233E300CDFF85 /* Texta-Bold.otf */; };
+		D45B7FE91CE233E300CDFF85 /* Texta-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = D45B7FE61CE233E300CDFF85 /* Texta-Medium.otf */; };
+		D45B7FEA1CE233E300CDFF85 /* Texta-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = D45B7FE71CE233E300CDFF85 /* Texta-Regular.otf */; };
+		D45B7FED1CE2352600CDFF85 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D45B7FEC1CE2352600CDFF85 /* LaunchScreen.storyboard */; };
+		D49A955C1CE19B22000ECD1A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49A955B1CE19B22000ECD1A /* AppDelegate.swift */; };
+		D49A95771CE19C0E000ECD1A /* FTUEController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49A956E1CE19C0E000ECD1A /* FTUEController.swift */; };
+		D49A95781CE19C0E000ECD1A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D49A95721CE19C0E000ECD1A /* Assets.xcassets */; };
+		D49A95801CE2248C000ECD1A /* UIColor+Dictator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49A957F1CE2248C000ECD1A /* UIColor+Dictator.swift */; };
+		D49A95821CE22495000ECD1A /* UILabel+Dictator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49A95811CE22495000ECD1A /* UILabel+Dictator.swift */; };
+		D49A95841CE2249F000ECD1A /* UIButton+Dictator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49A95831CE2249F000ECD1A /* UIButton+Dictator.swift */; };
+		D49A95861CE224B6000ECD1A /* UIFont+Dictator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49A95851CE224B6000ECD1A /* UIFont+Dictator.swift */; };
+		D49A95881CE224CD000ECD1A /* UIView+Dictator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49A95871CE224CD000ECD1A /* UIView+Dictator.swift */; };
+		D49A958A1CE224DA000ECD1A /* BaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49A95891CE224DA000ECD1A /* BaseController.swift */; };
+		D49A958C1CE22548000ECD1A /* BaseController+KeyboardAvoidance.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49A958B1CE22548000ECD1A /* BaseController+KeyboardAvoidance.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		0C20BC25AF38A128097E671D /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		2DE9740E2C5F8F7E54754199 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C3A67CF5214EC5F678BB78D7 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		D45B7FE21CE2318000CDFF85 /* LoggedOutLocalizations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoggedOutLocalizations.swift; sourceTree = "<group>"; };
+		D45B7FE51CE233E300CDFF85 /* Texta-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Texta-Bold.otf"; sourceTree = "<group>"; };
+		D45B7FE61CE233E300CDFF85 /* Texta-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Texta-Medium.otf"; sourceTree = "<group>"; };
+		D45B7FE71CE233E300CDFF85 /* Texta-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Texta-Regular.otf"; sourceTree = "<group>"; };
+		D45B7FEC1CE2352600CDFF85 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		D49A95581CE19B22000ECD1A /* FoodDictator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodDictator.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D49A955B1CE19B22000ECD1A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		D49A956E1CE19C0E000ECD1A /* FTUEController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTUEController.swift; sourceTree = "<group>"; };
+		D49A95721CE19C0E000ECD1A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D49A95741CE19C0E000ECD1A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D49A957F1CE2248C000ECD1A /* UIColor+Dictator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Dictator.swift"; sourceTree = "<group>"; };
+		D49A95811CE22495000ECD1A /* UILabel+Dictator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+Dictator.swift"; sourceTree = "<group>"; };
+		D49A95831CE2249F000ECD1A /* UIButton+Dictator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+Dictator.swift"; sourceTree = "<group>"; };
+		D49A95851CE224B6000ECD1A /* UIFont+Dictator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+Dictator.swift"; sourceTree = "<group>"; };
+		D49A95871CE224CD000ECD1A /* UIView+Dictator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Dictator.swift"; sourceTree = "<group>"; };
+		D49A95891CE224DA000ECD1A /* BaseController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseController.swift; sourceTree = "<group>"; };
+		D49A958B1CE22548000ECD1A /* BaseController+KeyboardAvoidance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "BaseController+KeyboardAvoidance.swift"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D49A95551CE19B22000ECD1A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				436DA59D235C9497AA297676 /* Pods.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8A28CF29BE98DFDB859FAB28 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2DE9740E2C5F8F7E54754199 /* Pods.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AFDB3D713F1202312461807E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0C20BC25AF38A128097E671D /* Pods.debug.xcconfig */,
+				C3A67CF5214EC5F678BB78D7 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		D45B7FE41CE233E300CDFF85 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				D45B7FE51CE233E300CDFF85 /* Texta-Bold.otf */,
+				D45B7FE61CE233E300CDFF85 /* Texta-Medium.otf */,
+				D45B7FE71CE233E300CDFF85 /* Texta-Regular.otf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		D45B7FEB1CE2352600CDFF85 /* Launch */ = {
+			isa = PBXGroup;
+			children = (
+				D45B7FEC1CE2352600CDFF85 /* LaunchScreen.storyboard */,
+			);
+			path = Launch;
+			sourceTree = "<group>";
+		};
+		D49A954F1CE19B22000ECD1A = {
+			isa = PBXGroup;
+			children = (
+				D49A955A1CE19B22000ECD1A /* FoodDictator */,
+				D49A95591CE19B22000ECD1A /* Products */,
+				AFDB3D713F1202312461807E /* Pods */,
+				8A28CF29BE98DFDB859FAB28 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		D49A95591CE19B22000ECD1A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D49A95581CE19B22000ECD1A /* FoodDictator.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D49A955A1CE19B22000ECD1A /* FoodDictator */ = {
+			isa = PBXGroup;
+			children = (
+				D49A955B1CE19B22000ECD1A /* AppDelegate.swift */,
+				D49A956D1CE19C0E000ECD1A /* Controllers */,
+				D49A956F1CE19C0E000ECD1A /* Extensions */,
+				D49A95701CE19C0E000ECD1A /* Models */,
+				D49A95711CE19C0E000ECD1A /* Resources */,
+				D49A95731CE19C0E000ECD1A /* Supporting Files */,
+				D49A95751CE19C0E000ECD1A /* Third Party */,
+				D49A95761CE19C0E000ECD1A /* Views */,
+			);
+			path = FoodDictator;
+			sourceTree = "<group>";
+		};
+		D49A956D1CE19C0E000ECD1A /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				D49A95891CE224DA000ECD1A /* BaseController.swift */,
+				D49A956E1CE19C0E000ECD1A /* FTUEController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		D49A956F1CE19C0E000ECD1A /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				D49A958B1CE22548000ECD1A /* BaseController+KeyboardAvoidance.swift */,
+				D49A95831CE2249F000ECD1A /* UIButton+Dictator.swift */,
+				D49A957F1CE2248C000ECD1A /* UIColor+Dictator.swift */,
+				D49A95851CE224B6000ECD1A /* UIFont+Dictator.swift */,
+				D49A95811CE22495000ECD1A /* UILabel+Dictator.swift */,
+				D49A95871CE224CD000ECD1A /* UIView+Dictator.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		D49A95701CE19C0E000ECD1A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		D49A95711CE19C0E000ECD1A /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D45B7FE41CE233E300CDFF85 /* Fonts */,
+				D49A957E1CE19CBD000ECD1A /* Localizations */,
+				D49A95721CE19C0E000ECD1A /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		D49A95731CE19C0E000ECD1A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D49A95741CE19C0E000ECD1A /* Info.plist */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D49A95751CE19C0E000ECD1A /* Third Party */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Third Party";
+			sourceTree = "<group>";
+		};
+		D49A95761CE19C0E000ECD1A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D45B7FEB1CE2352600CDFF85 /* Launch */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		D49A957E1CE19CBD000ECD1A /* Localizations */ = {
+			isa = PBXGroup;
+			children = (
+				D45B7FE21CE2318000CDFF85 /* LoggedOutLocalizations.swift */,
+			);
+			path = Localizations;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D49A95571CE19B22000ECD1A /* FoodDictator */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D49A956A1CE19B22000ECD1A /* Build configuration list for PBXNativeTarget "FoodDictator" */;
+			buildPhases = (
+				2DACCD9052BC345FB86C3A17 /* Check Pods Manifest.lock */,
+				D49A95541CE19B22000ECD1A /* Sources */,
+				D49A95551CE19B22000ECD1A /* Frameworks */,
+				D49A95561CE19B22000ECD1A /* Resources */,
+				E4C7B8475C074AFC73D1B621 /* Embed Pods Frameworks */,
+				8ED1A530F497577ACB4F75D5 /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FoodDictator;
+			productName = FoodDictator;
+			productReference = D49A95581CE19B22000ECD1A /* FoodDictator.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D49A95501CE19B22000ECD1A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = "Viv Labs";
+				TargetAttributes = {
+					D49A95571CE19B22000ECD1A = {
+						CreatedOnToolsVersion = 7.3;
+					};
+				};
+			};
+			buildConfigurationList = D49A95531CE19B22000ECD1A /* Build configuration list for PBXProject "FoodDictator" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D49A954F1CE19B22000ECD1A;
+			productRefGroup = D49A95591CE19B22000ECD1A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D49A95571CE19B22000ECD1A /* FoodDictator */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D49A95561CE19B22000ECD1A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D45B7FE81CE233E300CDFF85 /* Texta-Bold.otf in Resources */,
+				D45B7FE91CE233E300CDFF85 /* Texta-Medium.otf in Resources */,
+				D45B7FED1CE2352600CDFF85 /* LaunchScreen.storyboard in Resources */,
+				D45B7FEA1CE233E300CDFF85 /* Texta-Regular.otf in Resources */,
+				D49A95781CE19C0E000ECD1A /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2DACCD9052BC345FB86C3A17 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		8ED1A530F497577ACB4F75D5 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E4C7B8475C074AFC73D1B621 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D49A95541CE19B22000ECD1A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D49A958C1CE22548000ECD1A /* BaseController+KeyboardAvoidance.swift in Sources */,
+				D49A95821CE22495000ECD1A /* UILabel+Dictator.swift in Sources */,
+				D49A95771CE19C0E000ECD1A /* FTUEController.swift in Sources */,
+				D49A95841CE2249F000ECD1A /* UIButton+Dictator.swift in Sources */,
+				D49A95801CE2248C000ECD1A /* UIColor+Dictator.swift in Sources */,
+				D49A95881CE224CD000ECD1A /* UIView+Dictator.swift in Sources */,
+				D49A95861CE224B6000ECD1A /* UIFont+Dictator.swift in Sources */,
+				D49A958A1CE224DA000ECD1A /* BaseController.swift in Sources */,
+				D49A955C1CE19B22000ECD1A /* AppDelegate.swift in Sources */,
+				D45B7FE31CE2318000CDFF85 /* LoggedOutLocalizations.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		D49A95681CE19B22000ECD1A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		D49A95691CE19B22000ECD1A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D49A956B1CE19B22000ECD1A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0C20BC25AF38A128097E671D /* Pods.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "$(SRCROOT)/FoodDictator/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.VivLabs.FoodDictator;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		D49A956C1CE19B22000ECD1A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C3A67CF5214EC5F678BB78D7 /* Pods.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "$(SRCROOT)/FoodDictator/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.VivLabs.FoodDictator;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D49A95531CE19B22000ECD1A /* Build configuration list for PBXProject "FoodDictator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D49A95681CE19B22000ECD1A /* Debug */,
+				D49A95691CE19B22000ECD1A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D49A956A1CE19B22000ECD1A /* Build configuration list for PBXNativeTarget "FoodDictator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D49A956B1CE19B22000ECD1A /* Debug */,
+				D49A956C1CE19B22000ECD1A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D49A95501CE19B22000ECD1A /* Project object */;
+}
