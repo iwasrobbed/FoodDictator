@@ -100,20 +100,20 @@ private extension FTUEController {
     // MARK: - Animation
 
     func animateView() {
-        view.layoutSubviews()
+        view.layoutIfNeeded()
 
         self.logoCenterYConstraint!.updateOffset(-50)
         self.dictatorLogo.setNeedsLayout()
 
-        UIView.animateWithDuration(1, delay: 0.5,
+        UIView.animateWithDuration(1.1, delay: 0.5,
                                    usingSpringWithDamping: 0.5,
                                    initialSpringVelocity: 0.8,
-                                   options: .CurveEaseIn,
+                                   options: .CurveEaseInOut,
                                    animations: { () -> Void in
                                     self.dictatorLogo.layoutIfNeeded()
             }, completion: nil)
 
-        UIView.animateWithDuration(0.3, delay: 0.75, options: .CurveEaseIn, animations: { () -> Void in
+        UIView.animateWithDuration(0.3, delay: 0.65, options: .CurveEaseIn, animations: { () -> Void in
             self.signInButton.alpha = 1
             self.oneMealLabel.alpha = 1
             self.gamesBeginLabel.alpha = 1

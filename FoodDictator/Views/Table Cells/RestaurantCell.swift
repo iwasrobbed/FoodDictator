@@ -1,5 +1,5 @@
 //
-//  ChooseHumanCell.swift
+//  RestaurantCell.swift
 //  FoodDictator
 //
 //  Created by Rob Phillips on 5/10/16.
@@ -8,32 +8,16 @@
 
 import UIKit
 
-class ChooseHumanCell: TableCell {
+class RestaurantCell: TableCell {
 
     // MARK: - Properties
 
-    static let cellReuseIdentifier = "ChooseHumanCell"
-    private static let unselectedFont = UIFont.dictatorRegular(18)
-    private static let selectedFont = UIFont.dictatorBold(18)
+    static let cellReuseIdentifier = "RestaurantCell"
+    let nameLabel = UILabel.dictatorLabel("", font: UIFont.dictatorRegular(18), alignment: .Left)
 
     let photoView = UIImageView()
     private let photoDiameter: CGFloat = 40
-
-    let nameLabel = UILabel.dictatorLabel("", font: unselectedFont, alignment: .Left)
-    lazy private var radioButton: UIButton = {
-        let button = UIButton.dictatorImageOnly(UIImage(named:"UnselectedRadio")!, target: self, action: #selector(ChooseHumanCell.toggleSelection))
-        button.setImage(UIImage(named: "SelectedRadio"), forState: .Selected)
-        return button
-    }()
-
-    var humanSelected = false {
-        didSet {
-            nameLabel.font = humanSelected ? ChooseHumanCell.selectedFont : ChooseHumanCell.unselectedFont
-            backgroundColor = humanSelected ? .dictatorLightGray() : .dictatorWhite()
-            radioButton.selected = humanSelected
-        }
-    }
-
+    
     // MARK: - Lifecycle
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
@@ -50,23 +34,15 @@ class ChooseHumanCell: TableCell {
 
     required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
 
-    // MARK: - Actions
-
-    @objc func toggleSelection() {
-        humanSelected = !humanSelected
-    }
-
 }
 
-private extension ChooseHumanCell {
+private extension RestaurantCell {
 
     // MARK: - View Setup
 
     func setupView() {
-
         contentView.addSubview(photoView)
         contentView.addSubview(nameLabel)
-        contentView.addSubview(radioButton)
 
         photoView.backgroundColor = .grayColor()
         photoView.fullyRound(photoDiameter, borderColor: .dictatorLine(), borderWidth: 0.5)
@@ -77,20 +53,13 @@ private extension ChooseHumanCell {
             make.centerY.equalTo(contentView)
         }
 
-        radioButton.snp_makeConstraints { (make) in
-            make.size.equalTo(20)
-            make.right.equalTo(contentView).offset(-10)
-            make.centerY.equalTo(contentView)
-        }
-
         nameLabel.snp_makeConstraints { (make) -> Void in
             make.height.equalTo(24)
             make.left.equalTo(photoView.snp_right).offset(8)
             make.centerY.equalTo(contentView)
-            make.right.equalTo(radioButton.snp_left)
+            make.right.equalTo(contentView).offset(-10)
         }
         
     }
     
 }
-

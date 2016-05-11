@@ -127,13 +127,13 @@ private extension DictatorController {
     // MARK: - Animations
 
     func animateHat() {
-        view.layoutSubviews()
+        view.layoutIfNeeded()
 
         self.hatBottomConstraint!.updateOffset(30)
         self.hatView.setNeedsLayout()
 
-        UIView.animateWithDuration(0.5, delay: 0.5,
-                                   usingSpringWithDamping: 0.5,
+        UIView.animateWithDuration(0.75, delay: 0.5,
+                                   usingSpringWithDamping: 0.65,
                                    initialSpringVelocity: 0.8,
                                    options: .CurveEaseIn,
                                    animations: { () -> Void in

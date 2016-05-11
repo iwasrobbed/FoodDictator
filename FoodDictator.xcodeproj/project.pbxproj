@@ -18,6 +18,8 @@
 		D45757FC1CE24E2C00802AE5 /* ChooseHumanCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45757FB1CE24E2C00802AE5 /* ChooseHumanCell.swift */; };
 		D45757FE1CE24E3900802AE5 /* TableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45757FD1CE24E3900802AE5 /* TableCell.swift */; };
 		D45758001CE2506B00802AE5 /* Human.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45757FF1CE2506B00802AE5 /* Human.swift */; };
+		D45758021CE290F600802AE5 /* RestaurantCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45758011CE290F600802AE5 /* RestaurantCell.swift */; };
+		D45758041CE2D5DA00802AE5 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45758031CE2D5DA00802AE5 /* Restaurant.swift */; };
 		D45B7FE31CE2318000CDFF85 /* LoggedOutLocalizations.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45B7FE21CE2318000CDFF85 /* LoggedOutLocalizations.swift */; };
 		D45B7FE81CE233E300CDFF85 /* Texta-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = D45B7FE51CE233E300CDFF85 /* Texta-Bold.otf */; };
 		D45B7FE91CE233E300CDFF85 /* Texta-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = D45B7FE61CE233E300CDFF85 /* Texta-Medium.otf */; };
@@ -48,6 +50,8 @@
 		D45757FB1CE24E2C00802AE5 /* ChooseHumanCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseHumanCell.swift; sourceTree = "<group>"; };
 		D45757FD1CE24E3900802AE5 /* TableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableCell.swift; sourceTree = "<group>"; };
 		D45757FF1CE2506B00802AE5 /* Human.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Human.swift; sourceTree = "<group>"; };
+		D45758011CE290F600802AE5 /* RestaurantCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantCell.swift; sourceTree = "<group>"; };
+		D45758031CE2D5DA00802AE5 /* Restaurant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
 		D45B7FE21CE2318000CDFF85 /* LoggedOutLocalizations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoggedOutLocalizations.swift; sourceTree = "<group>"; };
 		D45B7FE51CE233E300CDFF85 /* Texta-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Texta-Bold.otf"; sourceTree = "<group>"; };
 		D45B7FE61CE233E300CDFF85 /* Texta-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Texta-Medium.otf"; sourceTree = "<group>"; };
@@ -99,6 +103,7 @@
 			isa = PBXGroup;
 			children = (
 				D45757FB1CE24E2C00802AE5 /* ChooseHumanCell.swift */,
+				D45758011CE290F600802AE5 /* RestaurantCell.swift */,
 				D45757FD1CE24E3900802AE5 /* TableCell.swift */,
 			);
 			path = "Table Cells";
@@ -183,6 +188,7 @@
 			isa = PBXGroup;
 			children = (
 				D45757FF1CE2506B00802AE5 /* Human.swift */,
+				D45758031CE2D5DA00802AE5 /* Restaurant.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -357,6 +363,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D45758021CE290F600802AE5 /* RestaurantCell.swift in Sources */,
 				D45757FE1CE24E3900802AE5 /* TableCell.swift in Sources */,
 				D45757EF1CE239FD00802AE5 /* RestaurantsController.swift in Sources */,
 				D49A95821CE22495000ECD1A /* UILabel+Dictator.swift in Sources */,
@@ -373,6 +380,7 @@
 				D49A958A1CE224DA000ECD1A /* BaseController.swift in Sources */,
 				D45757F11CE240C800802AE5 /* FriendsLocalizations.swift in Sources */,
 				D49A955C1CE19B22000ECD1A /* AppDelegate.swift in Sources */,
+				D45758041CE2D5DA00802AE5 /* Restaurant.swift in Sources */,
 				D45B7FE31CE2318000CDFF85 /* LoggedOutLocalizations.swift in Sources */,
 				D45757EB1CE239DC00802AE5 /* ChooseFriendsController.swift in Sources */,
 				D45757ED1CE239E800802AE5 /* DictatorController.swift in Sources */,
