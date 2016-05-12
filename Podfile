@@ -6,8 +6,8 @@ inhibit_all_warnings!
 # use frameworks for Swift
 use_frameworks!
 
-# Facebook Login
-pod 'FBSDKLoginKit'
+# Twitter Login
+pod 'TwitterKit'
 
 # Restaurants (FourSquare)
 pod 'QuadratTouch'
@@ -17,6 +17,12 @@ pod 'SnapKit'
 
 # UI & Animations
 pod 'RPCircularProgress'
+
+# Models
+pod 'CottonObject'
+
+# Image Downloading
+pod 'SDWebImage'
 
 # Random data (for prototyping)
 pod 'SwiftRandom'

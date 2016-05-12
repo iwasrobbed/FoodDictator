@@ -21,6 +21,7 @@ class ChooseFriendsController: BaseController {
         super.viewDidLoad()
 
         setupView()
+        fetchTwitterFriends()
 
         // TODO: Should have keyboard avoidance to shrink the table view size / show button
         // Just hit the return key on the keyboard for now
@@ -28,9 +29,27 @@ class ChooseFriendsController: BaseController {
 
     // MARK: - Private Properties
 
-    private var humans = [Human(), Human(), Human(), Human(), Human(), Human()]
+    private var humans = [Human]()
 
-    private let searchField = TextField(cornerStyle: .All, placeholder: FriendsLocalizations.SearchPlaceholder)
+    private var isSearching = false
+    private var searchHumans = [Human]()
+
+    private lazy var searchField: TextField = {
+        let search = TextField(cornerStyle: .All, placeholder: FriendsLocalizations.SearchPlaceholder, cancellable: true)
+        search.beginEditingBlock = {
+            self.isSearching = true
+        }
+        search.changedBlock = { (text: String) in
+            self.searchWithText(text)
+        }
+        search.endEditingBlock = {
+            self.resetAfterSearching()
+        }
+        search.cancelBlock = {
+            self.resetAfterSearching()
+        }
+        return search
+    }()
 
     private let tableView: UITableView = {
         let table = UITableView()
@@ -39,6 +58,7 @@ class ChooseFriendsController: BaseController {
         table.registerClass(ChooseHumanCell.classForCoder(), forCellReuseIdentifier:ChooseHumanCell.cellReuseIdentifier)
         return table
     }()
+    private let refreshControl = UIRefreshControl()
 
     lazy private var chooseButton: UIButton = {
         return UIButton.dictatorRounded(.Pink, title: DictatorLocalizations.CHOOSEDICTATOR, target: self, action: #selector(ChooseFriendsController.chooseDictator))
@@ -58,6 +78,7 @@ private extension ChooseFriendsController {
         setupSearchField()
         setupButton()
         setupTableView()
+        setupRefreshView()
     }
 
     func setupSearchField() {
@@ -91,10 +112,58 @@ private extension ChooseFriendsController {
         }
     }
 
+    func setupRefreshView() {
+        refreshControl.tintColor = .dictatorPink()
+        refreshControl.addTarget(self, action: #selector(ChooseFriendsController.fetchTwitterFriends), forControlEvents: .ValueChanged)
+        tableView.addSubview(refreshControl)
+    }
+
+    // MARK: - Twitter
+
+    @objc func fetchTwitterFriends() {
+        // TODO Show HUD
+
+        TwitterManager.sharedManager.fetchFriends({ (humans) in
+            self.humans = humans
+            self.tableView.reloadData()
+            self.refreshControl.endRefreshing()
+        }) { (errorMessage) in
+            self.showFetchErrorMessage(errorMessage)
+        }
+    }
+
+    // MARK: - Search
+
+    func searchWithText(text: String) {
+        if text.characters.count == 0 {
+            self.tableView.reloadData()
+        } else {
+            TwitterManager.sharedManager.searchUsers(text, success: { (humans) in
+                self.searchHumans = humans
+                self.tableView.reloadData()
+            }, error: { (errorMessage) in
+                self.showFetchErrorMessage(errorMessage)
+            })
+        }
+    }
+
+    func resetAfterSearching() {
+        self.isSearching = false
+        self.tableView.reloadData()
+    }
+
     // MARK: - Actions
 
     @objc func chooseDictator() {
-        self.navigationController?.pushViewController(DictatorController(), animated: true)
+        let dictator = humans[0]
+        self.navigationController?.pushViewController(DictatorController(human: dictator), animated: true)
+    }
+
+    // MARK: - Helper Methods
+
+    func showFetchErrorMessage(errorMessage: String) {
+        let message = String(format: TwitterLocalizations.FetchFriendsErrorFormat, arguments: [errorMessage])
+        AlertView.showErrorMessage(message, viewController: self)
     }
 
 }
@@ -104,15 +173,17 @@ private extension ChooseFriendsController {
 extension ChooseFriendsController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return humans.count
+        return isSearching ? searchHumans.count : humans.count
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(ChooseHumanCell.cellReuseIdentifier) as! ChooseHumanCell
 
-        let human = humans[indexPath.row]
-        cell.photoView.image = human.photo
+        let human = isSearching ? searchHumans[indexPath.row] : humans[indexPath.row]
+        cell.photoView.sd_setImageWithURL(human.photoURL)
         cell.nameLabel.text = human.fullName
+        cell.screenNameLabel.text = human.screenName
+        cell.humanSelected = human.isSelected
 
         return cell
     }
@@ -120,6 +191,17 @@ extension ChooseFriendsController: UITableViewDataSource, UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let cell = tableView.cellForRowAtIndexPath(indexPath) as! ChooseHumanCell
         cell.toggleSelection()
+
+        let human = isSearching ? searchHumans[indexPath.row] : humans[indexPath.row]
+        human.isSelected = cell.humanSelected
+
+        // If we found someone already in the table, toggle their selection
+        if let index = humans.indexOf(human) {
+            humans[index].isSelected = cell.humanSelected
+        } else {
+            // Otherwise, add the new person to our table for once search is finished
+            humans.insert(human, atIndex: 0)
+        }
     }
     
 }

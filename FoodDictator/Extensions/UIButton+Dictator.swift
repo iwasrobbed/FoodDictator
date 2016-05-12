@@ -55,16 +55,16 @@ extension UIButton {
     }
 
     /**
-     Creates a button for logging in with Facebook
+     Creates a button for logging in with Twitter
 
      - parameter target: Class to target
      - parameter action: Function to call upon touch up inside
 
-     - returns: A Facebook login button
+     - returns: A Twitter login button
      */
-    class func dictatorFacebook(target: AnyObject, action: Selector) -> UIButton {
-        let button = dictatorRounded(.Pink, title: FTUELocalizations.FACEBOOK, target: target, action: action)
-        button.setImage(UIImage(named: "FBLogo"), forState: .Normal)
+    class func dictatorTwitter(target: AnyObject, action: Selector) -> UIButton {
+        let button = dictatorRounded(.Pink, title: FTUELocalizations.TWITTER, target: target, action: action)
+        button.setImage(UIImage(named: "TwitterLogo"), forState: .Normal)
         button.adjustsImageWhenHighlighted = false
         button.imageEdgeInsets = UIEdgeInsetsMake(10, 30, 10, 80)
         return button

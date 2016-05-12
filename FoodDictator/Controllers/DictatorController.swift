@@ -8,6 +8,7 @@
 
 import UIKit
 import SnapKit
+import SDWebImage
 
 /*
  * The dictator has arisen!
@@ -17,8 +18,13 @@ class DictatorController: BaseController {
 
     // MARK: - Lifecycle
 
-    // TODO: Init with a human
-    let human = Human()
+    required init(human: Human) {
+        self.human = human
+
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,12 +40,14 @@ class DictatorController: BaseController {
 
     // MARK: - Private Properties
 
-    let hatView = UIImageView(image: UIImage(named: "DictatorHat"))
+    private var human: Human
+
+    private let hatView = UIImageView(image: UIImage(named: "DictatorHat"))
     private var hatBottomConstraint: Constraint?
 
-    let photoView = UIImageView()
+    private let photoView = UIImageView()
     private let photoDiameter: CGFloat = 150
-    let nameLabel = UILabel.dictatorHeader4Label("")
+    private let nameLabel = UILabel.dictatorHeader4Label("")
 
     lazy private var revoltButton: UIButton = {
         return UIButton.dictatorRounded(.Blue, title: DictatorLocalizations.REVOLT, target: self, action: #selector(DictatorController.revoltAgainstDictator))
@@ -73,7 +81,7 @@ private extension DictatorController {
 
         nameLabel.text = human.fullName
 
-        photoView.image = human.photo
+        photoView.sd_setImageWithURL(human.photoURL)
         photoView.backgroundColor = .grayColor()
         photoView.fullyRound(photoDiameter, borderColor: .dictatorLine(), borderWidth: 0.5)
         photoView.snp_makeConstraints { (make) in

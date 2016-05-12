@@ -1,5 +1,5 @@
 //
-//  TextField.swift
+//  SearchField.swift
 //  FoodDictator
 //
 //  Created by Rob Phillips on 5/10/16.
@@ -7,6 +7,11 @@
 //
 
 import UIKit
+
+typealias TextFieldBeginEditingBlock = () -> Void
+typealias TextFieldEndEditingBlock = () -> Void
+typealias TextFieldChangedBlock = (text: String) -> Void
+typealias TextFieldCancelBlock = () -> Void
 
 class TextField : UIView {
 
@@ -18,10 +23,6 @@ class TextField : UIView {
         static let standard = 0.85
         static let full = 0.95
     }
-
-    private let container = UIView()
-    private let textField = UITextField()
-    private var roundedCornerStyle : RoundedCornerStyle?
 
     enum RoundedCornerStyle: Int {
         case Top, Bottom, All, None
@@ -40,6 +41,28 @@ class TextField : UIView {
         }
     }
 
+    // MARK: - Public Properties
+
+    /**
+      Gets called when the text field begins editing
+     */
+    var beginEditingBlock: TextFieldBeginEditingBlock?
+
+    /**
+      Gets called when the text changes
+     */
+    var changedBlock: TextFieldChangedBlock?
+
+    /**
+      Gets called when the text field ends editing
+     */
+    var endEditingBlock: TextFieldBeginEditingBlock?
+
+    /**
+      Gets called when the text field's cancel button is tapped
+     */
+    var cancelBlock: TextFieldCancelBlock?
+
     // MARK: - Lifecycle
 
     /**
@@ -50,14 +73,19 @@ class TextField : UIView {
 
      - returns: A customized textfield
      */
-    init(cornerStyle: RoundedCornerStyle = .None, placeholder: String) {
+    required init(cornerStyle: RoundedCornerStyle = .None, placeholder: String, cancellable: Bool = false) {
         super.init(frame: CGRectZero)
 
-        setupView(cornerStyle, placeholder: placeholder)
+        setupView(cornerStyle, placeholder: placeholder, cancellable: cancellable)
+        setupNotifications()
     }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
 
     // MARK: - First Responder
@@ -80,6 +108,15 @@ class TextField : UIView {
         }
     }
 
+    // MARK: - Private Properties
+
+    private let container = UIView()
+    private let textField = UITextField()
+    lazy private var cancelButton: UIButton = {
+        return UIButton.dictatorImageOnly(UIImage(named: "SearchCancel")!, target: self, action: #selector(TextField.cancelTapped))
+    }()
+    private var roundedCornerStyle : RoundedCornerStyle?
+
 }
 
 // MARK: - Private API
@@ -88,7 +125,7 @@ private extension TextField {
 
     // MARK: - View Setup
 
-    func setupView(cornerStyle: RoundedCornerStyle = .None, placeholder: String) {
+    func setupView(cornerStyle: RoundedCornerStyle = .None, placeholder: String, cancellable: Bool) {
         backgroundColor = UIColor.clearColor()
         roundedCornerStyle = cornerStyle
 
@@ -98,20 +135,62 @@ private extension TextField {
             make.edges.equalTo(self)
         }
 
+        let cancelDiameter: CGFloat = 40
+        if cancellable {
+            container.addSubview(cancelButton)
+            cancelButton.snp_makeConstraints(closure: { (make) in
+                make.size.equalTo(cancelDiameter)
+                make.centerY.right.equalTo(container)
+            })
+        }
+
+        // TODO: Fix textfield not overflowing correctly
         textField.font = .dictatorTextField()
         textField.delegate = self
         textField.placeholder = placeholder
+        textField.autocorrectionType = .No
+        textField.autocapitalizationType = .None
         container.addSubview(textField)
         textField.snp_makeConstraints { (make) -> Void in
-            make.edges.equalTo(container).inset(UIEdgeInsetsMake(10, 20, 10, 20))
+            let hPadding: CGFloat = 10
+            let vPadding: CGFloat = 5
+            let rightInset = cancellable ? cancelDiameter + hPadding : hPadding
+            make.edges.equalTo(container).inset(UIEdgeInsetsMake(vPadding, hPadding, vPadding, rightInset))
         }
+    }
+
+    // MARK: - Notifications
+
+    func setupNotifications() {
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(TextField.textFieldDidChange), name: UITextFieldTextDidChangeNotification, object: nil)
+    }
+
+    // MARK: - Actions
+
+    @objc func cancelTapped() {
+        textField.text = ""
+        textField.resignFirstResponder()
+
+        cancelBlock?()
     }
 
 }
 
-// MARK: - UITextFieldDelegate
+// MARK: - UITextFieldDelegate & Notifications
 
 extension TextField: UITextFieldDelegate {
+
+    func textFieldDidBeginEditing(textField: UITextField) {
+        beginEditingBlock?()
+    }
+
+    func textFieldDidChange() {
+        changedBlock?(text: textField.text!)
+    }
+
+    func textFieldDidEndEditing(textField: UITextField) {
+        endEditingBlock?()
+    }
 
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()

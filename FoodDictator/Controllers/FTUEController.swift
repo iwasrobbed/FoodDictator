@@ -39,7 +39,7 @@ class FTUEController: BaseController {
     }()
     
     lazy private var signInButton: UIButton = {
-        return UIButton.dictatorFacebook(self, action: #selector(FTUEController.signInTapped))
+        return UIButton.dictatorTwitter(self, action: #selector(FTUEController.signInTapped))
     }()
 
 }
@@ -123,7 +123,17 @@ private extension FTUEController {
     // MARK: - Actions
     
     @objc func signInTapped() {
-        self.navigationController?.pushViewController(ChooseFriendsController(), animated: true)
+        TwitterManager.sharedManager.login({ (session) in
+            self.navigationController?.pushViewController(ChooseFriendsController(), animated: true)
+        }) { (errorMessage) in
+            self.showTwitterErrorMessage(errorMessage)
+        }
     }
-    
+
+    // MARK - Alert
+
+    func showTwitterErrorMessage(message: String) {
+        let errorMessage = String(format: TwitterLocalizations.LoginErrorFormat, arguments: [message])
+        AlertView.showErrorMessage(errorMessage, viewController: self)
+    }
 }

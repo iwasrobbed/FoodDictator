@@ -16,10 +16,15 @@ class ChooseHumanCell: TableCell {
     private static let unselectedFont = UIFont.dictatorRegular(18)
     private static let selectedFont = UIFont.dictatorBold(18)
 
-    let photoView = UIImageView()
+    let photoView: UIImageView = {
+        let view = UIImageView()
+        view.contentMode = .ScaleAspectFill
+        return view
+    }()
     private let photoDiameter: CGFloat = 40
 
     let nameLabel = UILabel.dictatorLabel("", font: unselectedFont, alignment: .Left)
+    let screenNameLabel = UILabel.dictatorLabel("", font: UIFont.dictatorRegular(16), color: UIColor.dictatorGrayText(), alignment: .Left)
     lazy private var radioButton: UIButton = {
         let button = UIButton.dictatorImageOnly(UIImage(named:"UnselectedRadio")!, target: self, action: #selector(ChooseHumanCell.toggleSelection))
         button.setImage(UIImage(named: "SelectedRadio"), forState: .Selected)
@@ -66,6 +71,7 @@ private extension ChooseHumanCell {
 
         contentView.addSubview(photoView)
         contentView.addSubview(nameLabel)
+        contentView.addSubview(screenNameLabel)
         contentView.addSubview(radioButton)
 
         photoView.backgroundColor = .grayColor()
@@ -86,8 +92,13 @@ private extension ChooseHumanCell {
         nameLabel.snp_makeConstraints { (make) -> Void in
             make.height.equalTo(24)
             make.left.equalTo(photoView.snp_right).offset(8)
-            make.centerY.equalTo(contentView)
+            make.centerY.equalTo(contentView).offset(-5)
             make.right.equalTo(radioButton.snp_left)
+        }
+
+        screenNameLabel.snp_makeConstraints { (make) -> Void in
+            make.left.right.height.equalTo(nameLabel)
+            make.centerY.equalTo(contentView).offset(10)
         }
         
     }

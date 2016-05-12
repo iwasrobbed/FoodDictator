@@ -15,7 +15,11 @@ class RestaurantCell: TableCell {
     static let cellReuseIdentifier = "RestaurantCell"
     let nameLabel = UILabel.dictatorLabel("", font: UIFont.dictatorRegular(18), alignment: .Left)
 
-    let photoView = UIImageView()
+    let photoView: UIImageView = {
+        let view = UIImageView()
+        view.contentMode = .ScaleAspectFill
+        return view
+    }()
     private let photoDiameter: CGFloat = 40
     
     // MARK: - Lifecycle

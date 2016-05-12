@@ -6,36 +6,73 @@
 //  Copyright © 2016 Viv Labs. All rights reserved.
 //
 
-import Foundation
-import SwiftRandom
+import CottonObject
 
-class Human {
+class Human: CottonObject {
 
-    var firstName = Human.randomFirstName()
-    var lastName = Human.randomLastName()
-    var photo = Human.randomPhoto()
+    // MARK: - Properties
 
-    lazy var fullName: String = {
-        return "\(self.firstName) \(self.lastName)"
-    }()
+    var isSelected = false
+
+    var fullName: String {
+        get {
+            return self.stringForGetter(#function)
+        }
+        set {
+            self.setString(newValue, forKey: #function)
+        }
+    }
+
+    var screenName: String {
+        get {
+            return self.stringForGetter(#function)
+        }
+        set {
+            self.setString(newValue, forKey: #function)
+        }
+    }
+
+    var photoURL: NSURL {
+        get {
+            return self.urlForGetter(#function)
+        }
+        set {
+            self.setUrl(newValue, forKey: #function)
+        }
+    }
+
+    // MARK: - Instantiation
+
+    required init(fullName: String, screenName: String, photoURL: NSURL) {
+        super.init()
+
+        self.fullName = fullName
+        self.screenName = screenName
+        self.photoURL = photoURL
+    }
+
+    convenience init(fullName: String, screenName: String, photoURLString: String) {
+        self.init(fullName: fullName, screenName: screenName, photoURL: NSURL(string: photoURLString)!)
+    }
+    
+    required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
 
 }
 
-private extension Human {
+// MARK: - Equality
 
-    class func randomFirstName() -> String {
-        let firstNameList = ["Henry", "William", "Geoffrey", "Jim", "Yvonne", "Jamie", "Leticia", "Priscilla", "Sidney", "Nancy", "Edmund", "Bill", "Megan"]
-        return firstNameList.randomItem()
-    }
+extension Human {
 
-    class func randomLastName() -> String {
-        let lastNameList = ["Pearson", "Adams", "Cole", "Francis", "Andrews", "Casey", "Gross", "Lane", "Thomas", "Patrick", "Strickland", "Nicolas", "Freeman"]
-        return lastNameList.randomItem()
-    }
+    override func isEqual(object: AnyObject?) -> Bool {
+        if object == nil {
+            return false
+        }
 
-    class func randomPhoto() -> UIImage {
-        let names = ["face1", "face2", "face3", "face4", "face5", "face6"]
-        return UIImage(named: names.randomItem())!
+        // Check if it's even a human object
+        if let otherHuman = object as? Human {
+            return screenName == otherHuman.screenName
+        }
+
+        return false
     }
-    
 }

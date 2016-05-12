@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Fabric
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -14,7 +15,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        
+
+        // Fabric / Twitter
+        Fabric.with([TwitterManager.sharedManager.twitterInstance])
+
         // View Setup
         setupRootView()
 
@@ -51,7 +55,8 @@ private extension AppDelegate {
 
     func setupRootView() {
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        let navVC = UINavigationController(rootViewController: FTUEController())
+        let rootVC = TwitterManager.sharedManager.isLoggedIn ? ChooseFriendsController() : FTUEController()
+        let navVC = UINavigationController(rootViewController: rootVC)
         window?.rootViewController = navVC
         window?.makeKeyAndVisible()
     }

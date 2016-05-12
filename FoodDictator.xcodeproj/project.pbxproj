@@ -20,11 +20,16 @@
 		D45758001CE2506B00802AE5 /* Human.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45757FF1CE2506B00802AE5 /* Human.swift */; };
 		D45758021CE290F600802AE5 /* RestaurantCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45758011CE290F600802AE5 /* RestaurantCell.swift */; };
 		D45758041CE2D5DA00802AE5 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45758031CE2D5DA00802AE5 /* Restaurant.swift */; };
+		D457580C1CE36F8900802AE5 /* GeneralLocalizations.swift in Sources */ = {isa = PBXBuildFile; fileRef = D457580B1CE36F8900802AE5 /* GeneralLocalizations.swift */; };
+		D457580E1CE3718100802AE5 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D457580D1CE3718100802AE5 /* AlertView.swift */; };
 		D45B7FE31CE2318000CDFF85 /* LoggedOutLocalizations.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45B7FE21CE2318000CDFF85 /* LoggedOutLocalizations.swift */; };
 		D45B7FE81CE233E300CDFF85 /* Texta-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = D45B7FE51CE233E300CDFF85 /* Texta-Bold.otf */; };
 		D45B7FE91CE233E300CDFF85 /* Texta-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = D45B7FE61CE233E300CDFF85 /* Texta-Medium.otf */; };
 		D45B7FEA1CE233E300CDFF85 /* Texta-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = D45B7FE71CE233E300CDFF85 /* Texta-Regular.otf */; };
 		D45B7FED1CE2352600CDFF85 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D45B7FEC1CE2352600CDFF85 /* LaunchScreen.storyboard */; };
+		D466B33B1CE3CF2B00F2C322 /* TwitterLocalizations.swift in Sources */ = {isa = PBXBuildFile; fileRef = D466B33A1CE3CF2B00F2C322 /* TwitterLocalizations.swift */; };
+		D466B3401CE3E49000F2C322 /* TwitterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D466B33F1CE3E49000F2C322 /* TwitterManager.swift */; };
+		D466B3421CE3E4A100F2C322 /* TwitterUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D466B3411CE3E4A100F2C322 /* TwitterUser.swift */; };
 		D49A955C1CE19B22000ECD1A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49A955B1CE19B22000ECD1A /* AppDelegate.swift */; };
 		D49A95771CE19C0E000ECD1A /* FTUEController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49A956E1CE19C0E000ECD1A /* FTUEController.swift */; };
 		D49A95781CE19C0E000ECD1A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D49A95721CE19C0E000ECD1A /* Assets.xcassets */; };
@@ -52,11 +57,16 @@
 		D45757FF1CE2506B00802AE5 /* Human.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Human.swift; sourceTree = "<group>"; };
 		D45758011CE290F600802AE5 /* RestaurantCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantCell.swift; sourceTree = "<group>"; };
 		D45758031CE2D5DA00802AE5 /* Restaurant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
+		D457580B1CE36F8900802AE5 /* GeneralLocalizations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralLocalizations.swift; sourceTree = "<group>"; };
+		D457580D1CE3718100802AE5 /* AlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		D45B7FE21CE2318000CDFF85 /* LoggedOutLocalizations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoggedOutLocalizations.swift; sourceTree = "<group>"; };
 		D45B7FE51CE233E300CDFF85 /* Texta-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Texta-Bold.otf"; sourceTree = "<group>"; };
 		D45B7FE61CE233E300CDFF85 /* Texta-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Texta-Medium.otf"; sourceTree = "<group>"; };
 		D45B7FE71CE233E300CDFF85 /* Texta-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Texta-Regular.otf"; sourceTree = "<group>"; };
 		D45B7FEC1CE2352600CDFF85 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		D466B33A1CE3CF2B00F2C322 /* TwitterLocalizations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterLocalizations.swift; sourceTree = "<group>"; };
+		D466B33F1CE3E49000F2C322 /* TwitterManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterManager.swift; sourceTree = "<group>"; };
+		D466B3411CE3E4A100F2C322 /* TwitterUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterUser.swift; sourceTree = "<group>"; };
 		D49A95581CE19B22000ECD1A /* FoodDictator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodDictator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D49A955B1CE19B22000ECD1A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D49A956E1CE19C0E000ECD1A /* FTUEController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTUEController.swift; sourceTree = "<group>"; };
@@ -125,6 +135,15 @@
 				D45B7FEC1CE2352600CDFF85 /* LaunchScreen.storyboard */,
 			);
 			path = Launch;
+			sourceTree = "<group>";
+		};
+		D466B33E1CE3E49000F2C322 /* Twitter */ = {
+			isa = PBXGroup;
+			children = (
+				D466B33F1CE3E49000F2C322 /* TwitterManager.swift */,
+				D466B3411CE3E4A100F2C322 /* TwitterUser.swift */,
+			);
+			path = Twitter;
 			sourceTree = "<group>";
 		};
 		D49A954F1CE19B22000ECD1A = {
@@ -214,6 +233,7 @@
 		D49A95751CE19C0E000ECD1A /* Third Party */ = {
 			isa = PBXGroup;
 			children = (
+				D466B33E1CE3E49000F2C322 /* Twitter */,
 			);
 			path = "Third Party";
 			sourceTree = "<group>";
@@ -221,9 +241,10 @@
 		D49A95761CE19C0E000ECD1A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D457580D1CE3718100802AE5 /* AlertView.swift */,
+				D45757F81CE24D2800802AE5 /* TextField.swift */,
 				D45B7FEB1CE2352600CDFF85 /* Launch */,
 				D45757FA1CE24E2C00802AE5 /* Table Cells */,
-				D45757F81CE24D2800802AE5 /* TextField.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -233,8 +254,10 @@
 			children = (
 				D45757F21CE2421C00802AE5 /* DictatorLocalizations.swift */,
 				D45757F01CE240C800802AE5 /* FriendsLocalizations.swift */,
+				D457580B1CE36F8900802AE5 /* GeneralLocalizations.swift */,
 				D45B7FE21CE2318000CDFF85 /* LoggedOutLocalizations.swift */,
 				D45757F41CE2422400802AE5 /* RestaurantLocalizations.swift */,
+				D466B33A1CE3CF2B00F2C322 /* TwitterLocalizations.swift */,
 			);
 			path = Localizations;
 			sourceTree = "<group>";
@@ -252,6 +275,7 @@
 				D49A95561CE19B22000ECD1A /* Resources */,
 				E4C7B8475C074AFC73D1B621 /* Embed Pods Frameworks */,
 				8ED1A530F497577ACB4F75D5 /* Copy Pods Resources */,
+				D466B33D1CE3E37600F2C322 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -341,6 +365,19 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		D466B33D1CE3E37600F2C322 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" a636ca0db0bbdbc40a4576e6c141661aa1f97ad7 e5bf3a07156d1adaf552b73bd10f111b65140a2dd10495b37ff5312c2e309095\n";
+		};
 		E4C7B8475C074AFC73D1B621 /* Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -368,8 +405,12 @@
 				D45757EF1CE239FD00802AE5 /* RestaurantsController.swift in Sources */,
 				D49A95821CE22495000ECD1A /* UILabel+Dictator.swift in Sources */,
 				D49A95771CE19C0E000ECD1A /* FTUEController.swift in Sources */,
+				D457580E1CE3718100802AE5 /* AlertView.swift in Sources */,
+				D466B3421CE3E4A100F2C322 /* TwitterUser.swift in Sources */,
 				D49A95841CE2249F000ECD1A /* UIButton+Dictator.swift in Sources */,
+				D466B3401CE3E49000F2C322 /* TwitterManager.swift in Sources */,
 				D45757F51CE2422400802AE5 /* RestaurantLocalizations.swift in Sources */,
+				D457580C1CE36F8900802AE5 /* GeneralLocalizations.swift in Sources */,
 				D49A95801CE2248C000ECD1A /* UIColor+Dictator.swift in Sources */,
 				D45758001CE2506B00802AE5 /* Human.swift in Sources */,
 				D45757FC1CE24E2C00802AE5 /* ChooseHumanCell.swift in Sources */,
@@ -384,6 +425,7 @@
 				D45B7FE31CE2318000CDFF85 /* LoggedOutLocalizations.swift in Sources */,
 				D45757EB1CE239DC00802AE5 /* ChooseFriendsController.swift in Sources */,
 				D45757ED1CE239E800802AE5 /* DictatorController.swift in Sources */,
+				D466B33B1CE3CF2B00F2C322 /* TwitterLocalizations.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -478,6 +520,7 @@
 			baseConfigurationReference = 0C20BC25AF38A128097E671D /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				INFOPLIST_FILE = "$(SRCROOT)/FoodDictator/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

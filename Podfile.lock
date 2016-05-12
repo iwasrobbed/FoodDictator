@@ -1,33 +1,36 @@
 PODS:
-  - Bolts (1.7.0):
-    - Bolts/AppLinks (= 1.7.0)
-    - Bolts/Tasks (= 1.7.0)
-  - Bolts/AppLinks (1.7.0):
-    - Bolts/Tasks
-  - Bolts/Tasks (1.7.0)
-  - FBSDKCoreKit (4.11.0):
-    - Bolts (~> 1.7)
-  - FBSDKLoginKit (4.11.0):
-    - FBSDKCoreKit
+  - CottonObject (0.0.5)
+  - Fabric (1.6.7)
   - QuadratTouch (1.1.1)
   - RPCircularProgress (0.1.1)
+  - SDWebImage (3.7.6):
+    - SDWebImage/Core (= 3.7.6)
+  - SDWebImage/Core (3.7.6)
   - SnapKit (0.20.0)
   - SwiftRandom (0.1.7)
+  - TwitterCore (2.0.2):
+    - Fabric
+  - TwitterKit (2.0.2):
+    - TwitterCore (= 2.0.2)
 
 DEPENDENCIES:
-  - FBSDKLoginKit
+  - CottonObject
   - QuadratTouch
   - RPCircularProgress
+  - SDWebImage
   - SnapKit
   - SwiftRandom
+  - TwitterKit
 
 SPEC CHECKSUMS:
-  Bolts: a0058fa3b331c5a1e4402d534f2dae36dbff31e4
-  FBSDKCoreKit: 686ac982723a14ec9ddb85e2f81235d7706c891b
-  FBSDKLoginKit: bade9fc78277764149ccc5bfaadbf13c83175c6a
+  CottonObject: d651221bd6e49705cdf49a47f40f7d163c5f5592
+  Fabric: caf7580c725e64db144f610ac65cd60956911dc7
   QuadratTouch: 296d83c63a4328f6f40af9fc728fe24f0e3b00d4
   RPCircularProgress: 63f281296034d58478edb07fab76a6296e099e74
+  SDWebImage: c325cf02c30337336b95beff20a13df489ec0ec9
   SnapKit: 5fce3c1bbbf1fbd31de9aa92f33eb9fa03f15650
   SwiftRandom: a03b68cbcda1b03d0fef5a1b87296f9500b6eac3
+  TwitterCore: 0f44d8980a6879d5205dcb4e010d15e643e56fa0
+  TwitterKit: c4e40f289a3d7cc9fab9f241edd7502385468b65
 
 COCOAPODS: 0.39.0
