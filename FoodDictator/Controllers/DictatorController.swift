@@ -125,11 +125,11 @@ private extension DictatorController {
     // MARK: - Actions
 
     @objc func revoltAgainstDictator() {
-        self.navigationController?.popViewControllerAnimated(true)
+        navigationController?.popViewControllerAnimated(true)
     }
 
     @objc func viewRestaurants() {
-        self.navigationController?.pushViewController(RestaurantsController(), animated: true)
+        navigationController?.pushViewController(RestaurantsController(), animated: true)
     }
 
     // MARK: - Animations
@@ -137,8 +137,8 @@ private extension DictatorController {
     func animateHat() {
         view.layoutIfNeeded()
 
-        self.hatBottomConstraint!.updateOffset(30)
-        self.hatView.setNeedsLayout()
+        hatBottomConstraint!.updateOffset(30)
+        hatView.setNeedsLayout()
 
         UIView.animateWithDuration(0.75, delay: 0.5,
                                    usingSpringWithDamping: 0.65,

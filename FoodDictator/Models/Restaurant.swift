@@ -10,9 +10,9 @@ import CottonObject
 
 class Restaurant: CottonObject {
 
-    var name: String    { return self.stringForKey(APIJSONKeys.name) }
-    var rating: Float?  { return self.floatForKey(APIJSONKeys.rating) }
-    var openNow: Bool?  { return self.boolForKey(APIJSONKeys.openNow) }
+    var name: String    { return stringForKey(APIJSONKeys.name) }
+    var rating: Float?  { return floatForKey(APIJSONKeys.rating) }
+    var openNow: Bool?  { return boolForKey(APIJSONKeys.openNow) }
 
     // MARK: - Instantiation
 

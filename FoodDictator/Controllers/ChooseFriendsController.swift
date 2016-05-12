@@ -21,7 +21,8 @@ class ChooseFriendsController: BaseController {
         super.viewDidLoad()
 
         setupView()
-        fetchTwitterFriends()
+
+        fetchTwitterFriendsAndMe()
 
         // TODO: Should have keyboard avoidance to shrink the table view size / show button
         // Just hit the return key on the keyboard for now
@@ -29,9 +30,14 @@ class ChooseFriendsController: BaseController {
 
     // MARK: - Private Properties
 
-    private var humans = [Human]()
+    private let humanStore = HumanStore()
+    private var selectedHumans = Set<Human>()
+    private var friends = [Human]()
 
     private var isSearching = false
+    private var isSearchingWithResults: Bool {
+        return isSearching && searchHumans.count > 0
+    }
     private var searchHumans = [Human]()
 
     private lazy var searchField: TextField = {
@@ -40,6 +46,9 @@ class ChooseFriendsController: BaseController {
             self.isSearching = true
         }
         search.changedBlock = { (text: String) in
+            // TODO: TwitterKit doesn't support canceling pending requests like Alamofire
+            // so we'd either need to do that ourselves or delay this change event from being called.
+            // Currently, it could lead to a lagging request getting called when other requests were sent after
             self.searchWithText(text)
         }
         search.endEditingBlock = {
@@ -108,62 +117,117 @@ private extension ChooseFriendsController {
         tableView.snp_makeConstraints { (make) -> Void in
             make.left.right.equalTo(view)
             make.top.equalTo(searchField.snp_bottom).offset(10)
-            make.bottom.equalTo(chooseButton.snp_top).offset(-5)
+            make.bottom.equalTo(chooseButton.snp_top).offset(-10)
         }
     }
 
     func setupRefreshView() {
         refreshControl.tintColor = .dictatorPink()
-        refreshControl.addTarget(self, action: #selector(ChooseFriendsController.fetchTwitterFriends), forControlEvents: .ValueChanged)
+        refreshControl.addTarget(self, action: #selector(ChooseFriendsController.fetchTwitterFriendsAndMe), forControlEvents: .ValueChanged)
         tableView.addSubview(refreshControl)
+    }
+
+    // MARK: - Saved Humans
+
+    func restoreSavedHumans() {
+        if let humans = humanStore.retrieveAll() {
+            selectedHumans = humans
+        }
     }
 
     // MARK: - Twitter
 
-    @objc func fetchTwitterFriends() {
+    @objc func fetchTwitterFriendsAndMe() {
         // TODO Show HUD
+        if let currentHuman = TwitterManager.sharedManager.currentHuman {
+            insertCurrentHumanAndFetchFriends(currentHuman)
+        } else {
+            TwitterManager.sharedManager.fetchCurrentHuman({ (currentHuman) in
+                self.insertCurrentHumanAndFetchFriends(currentHuman)
+            }) { (errorMessage) in
+                self.showFetchErrorMessage(errorMessage)
+            }
+        }
+    }
 
+    func insertCurrentHumanAndFetchFriends(currentHuman: Human) {
+        selectedHumans.removeAll()
+        friends.removeAll()
+        friends.insert(currentHuman, atIndex: 0)
+        fetchTwitterFriends()
+    }
+
+    func fetchTwitterFriends() {
         TwitterManager.sharedManager.fetchFriends({ (humans) in
-            self.humans = humans
-            self.tableView.reloadData()
-            self.refreshControl.endRefreshing()
+            self.updateTableWithTwitterFriends(humans)
         }) { (errorMessage) in
             self.showFetchErrorMessage(errorMessage)
         }
+    }
+
+    func updateTableWithTwitterFriends(humans: [Human]) {
+        friends.appendContentsOf(humans)
+        restoreSavedHumans()
+        for selectedHuman in selectedHumans {
+            if !friends.contains(selectedHuman) {
+                let index = friends.count > 0 ? 1 : 0
+                friends.insert(selectedHuman, atIndex: index)
+            }
+        }
+        tableView.reloadData()
+        refreshControl.endRefreshing()
     }
 
     // MARK: - Search
 
     func searchWithText(text: String) {
         if text.characters.count == 0 {
-            self.tableView.reloadData()
+            tableView.reloadData()
         } else {
-            TwitterManager.sharedManager.searchUsers(text, success: { (humans) in
-                self.searchHumans = humans
+            tableView.userInteractionEnabled = false
+
+            TwitterManager.sharedManager.searchUsers(text, success: { (searchHumans) in
+                self.searchHumans = searchHumans
                 self.tableView.reloadData()
+                self.tableView.userInteractionEnabled = true
             }, error: { (errorMessage) in
+                self.tableView.userInteractionEnabled = true
                 self.showFetchErrorMessage(errorMessage)
             })
         }
     }
 
     func resetAfterSearching() {
-        self.isSearching = false
-        self.tableView.reloadData()
+        searchHumans = [Human]()
+        isSearching = false
+
+        tableView.reloadData()
     }
 
     // MARK: - Actions
 
     @objc func chooseDictator() {
-        let dictator = humans[0]
-        self.navigationController?.pushViewController(DictatorController(human: dictator), animated: true)
+        let dictator = selectedHumans.first!
+        navigationController?.pushViewController(DictatorController(human: dictator), animated: true)
     }
 
     // MARK: - Helper Methods
 
     func showFetchErrorMessage(errorMessage: String) {
-        let message = String(format: TwitterLocalizations.FetchFriendsErrorFormat, arguments: [errorMessage])
+        let message = String(format: TwitterLocalizations.FetchErrorFormat, arguments: [errorMessage])
         AlertView.showErrorMessage(message, viewController: self)
+    }
+
+    // MARK: - Selecting Humans
+
+    func selectHuman(human: Human) {
+        selectedHumans.insert(human)
+        humanStore.store(human)
+    }
+
+    func deselectHuman(human: Human) {
+        selectedHumans.remove(human)
+        humanStore.remove(human)
     }
 
 }
@@ -173,35 +237,42 @@ private extension ChooseFriendsController {
 extension ChooseFriendsController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return isSearching ? searchHumans.count : humans.count
+        return isSearching ? searchHumans.count : friends.count
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(ChooseHumanCell.cellReuseIdentifier) as! ChooseHumanCell
 
-        let human = isSearching ? searchHumans[indexPath.row] : humans[indexPath.row]
+        let human = humanForRow(indexPath.row)
         cell.photoView.sd_setImageWithURL(human.photoURL)
         cell.nameLabel.text = human.fullName
         cell.screenNameLabel.text = human.screenName
-        cell.humanSelected = human.isSelected
+        cell.humanSelected = selectedHumans.contains(human)
 
         return cell
     }
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let cell = tableView.cellForRowAtIndexPath(indexPath) as! ChooseHumanCell
-        cell.toggleSelection()
+        let isHumanSelected = cell.toggleSelection()
 
-        let human = isSearching ? searchHumans[indexPath.row] : humans[indexPath.row]
-        human.isSelected = cell.humanSelected
+        let human = humanForRow(indexPath.row)
 
-        // If we found someone already in the table, toggle their selection
-        if let index = humans.indexOf(human) {
-            humans[index].isSelected = cell.humanSelected
-        } else {
-            // Otherwise, add the new person to our table for once search is finished
-            humans.insert(human, atIndex: 0)
+        if selectedHumans.contains(human) && !isHumanSelected {
+            deselectHuman(human)
+        }
+
+        if isHumanSelected {
+            selectHuman(human)
+
+            if !friends.contains(human) {
+                friends.insert(human, atIndex: 0)
+            }
         }
     }
-    
+
+    func humanForRow(row: NSInteger) -> Human {
+        return isSearchingWithResults ? searchHumans[row] : friends[row]
+    }
+
 }

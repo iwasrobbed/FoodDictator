@@ -56,7 +56,7 @@ private extension UIView {
         let path = UIBezierPath(roundedRect: bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
         let mask = CAShapeLayer()
         mask.path = path.CGPath
-        self.layer.mask = mask
+        layer.mask = mask
         return mask
     }
 

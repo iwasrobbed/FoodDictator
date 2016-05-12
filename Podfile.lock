@@ -25,7 +25,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   CottonObject:
-    :commit: 33e534191fd7fe54db4d9b428979876f221f9d59
+    :commit: d3172fc45da78c9081ee3d625be784a3838ae96c
     :git: git@github.com:iwasrobbed/CottonObject.git
 
 SPEC CHECKSUMS:

@@ -12,11 +12,9 @@ class Human: CottonObject {
 
     // MARK: - Properties
 
-    var isSelected = false
-
-    var fullName: String    { return self.stringForKey(APIJSONKeys.fullName) }
-    var screenName: String  { return self.stringForKey(APIJSONKeys.screenName) }
-    var photoURL: NSURL     { return self.urlForKey(APIJSONKeys.photoURL) }
+    var fullName: String    { return stringForKey(APIJSONKeys.fullName) }
+    var screenName: String  { return stringForKey(APIJSONKeys.screenName) }
+    var photoURL: NSURL     { return urlForKey(APIJSONKeys.photoURL) }
 
     // MARK: - Instantiation
 
@@ -29,8 +27,14 @@ class Human: CottonObject {
     convenience init(fullName: String, screenName: String, photoURLString: String) {
         self.init(fullName: fullName, screenName: screenName, photoURL: NSURL(string: photoURLString)!)
     }
+
+    required override init!(dictionary: [NSObject : AnyObject]!, removeNullKeys: Bool) {
+        super.init(dictionary: dictionary, removeNullKeys: removeNullKeys)
+    }
     
-    required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
 
 }
 
@@ -49,5 +53,9 @@ extension Human {
         }
 
         return false
+    }
+
+    override var hash: Int {
+        return screenName.hash
     }
 }

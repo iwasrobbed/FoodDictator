@@ -120,7 +120,10 @@ class TwitterManager {
      - parameter error:   Called during an error or bad data event
      */
     func searchUsers(query: String, success: TwitterHumansBlock? = nil, error: TwitterErrorBlock? = nil) {
-        let endpoint = "https://api.twitter.com/1.1/users/search.json?q=\(query)"
+        guard let escapedQuery = query.stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet()) else {
+            fatalError("Malformed query string when calling into Twitter API")
+        }
+        let endpoint = "https://api.twitter.com/1.1/users/search.json?q=\(escapedQuery)"
         fetchHumansFromEndpoint(endpoint, success: success, error: error)
     }
 

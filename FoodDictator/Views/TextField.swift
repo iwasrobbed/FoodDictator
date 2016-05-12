@@ -189,7 +189,7 @@ extension TextField: UITextFieldDelegate {
     }
 
     func textFieldDidChange() {
-        cancelButton.enabled = !(textField.text ?? "").isEmpty
+        cancelButton.enabled = textField.isFirstResponder()
 
         changedBlock?(text: textField.text!)
     }

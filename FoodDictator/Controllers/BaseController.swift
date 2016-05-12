@@ -59,8 +59,8 @@ private extension BaseController {
 
     func setupView() {
         // We don't use the navigation bar as-is; we create our own
-        self.navigationController?.navigationBarHidden = true
-        self.automaticallyAdjustsScrollViewInsets = false
+        navigationController?.navigationBarHidden = true
+        automaticallyAdjustsScrollViewInsets = false
 
         view.backgroundColor = .dictatorWhite()
     }
@@ -106,7 +106,7 @@ private extension BaseController {
     // MARK: - Actions
     
     @objc func backButtonTapped() {
-        self.navigationController?.popViewControllerAnimated(true)
+        navigationController?.popViewControllerAnimated(true)
     }
     
 }

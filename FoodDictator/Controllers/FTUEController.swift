@@ -102,8 +102,8 @@ private extension FTUEController {
     func animateView() {
         view.layoutIfNeeded()
 
-        self.logoCenterYConstraint!.updateOffset(-50)
-        self.dictatorLogo.setNeedsLayout()
+        logoCenterYConstraint!.updateOffset(-50)
+        dictatorLogo.setNeedsLayout()
 
         UIView.animateWithDuration(1.1, delay: 0.5,
                                    usingSpringWithDamping: 0.5,

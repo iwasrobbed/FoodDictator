@@ -25,17 +25,13 @@ class ChooseHumanCell: TableCell {
 
     let nameLabel = UILabel.dictatorRegularLabel("")
     let screenNameLabel = UILabel.dictatorLabel("", font: UIFont.dictatorRegular(16), color: UIColor.dictatorGrayText(), alignment: .Left)
-    lazy private var radioButton: UIButton = {
-        let button = UIButton.dictatorImageOnly(UIImage(named:"UnselectedRadio")!, target: self, action: #selector(ChooseHumanCell.toggleSelection))
-        button.setImage(UIImage(named: "SelectedRadio"), forState: .Selected)
-        return button
-    }()
+    private var radioView = UIImageView(image: UIImage(named:"UnselectedRadio")!)
 
     var humanSelected = false {
         didSet {
             nameLabel.font = humanSelected ? ChooseHumanCell.selectedFont : ChooseHumanCell.unselectedFont
             backgroundColor = humanSelected ? .dictatorLightGray() : .dictatorWhite()
-            radioButton.selected = humanSelected
+            radioView.image = UIImage(named: humanSelected ? "SelectedRadio" : "UnselectedRadio")
         }
     }
 
@@ -57,8 +53,9 @@ class ChooseHumanCell: TableCell {
 
     // MARK: - Actions
 
-    @objc func toggleSelection() {
+    @objc func toggleSelection() -> Bool {
         humanSelected = !humanSelected
+        return humanSelected
     }
 
 }
@@ -72,7 +69,7 @@ private extension ChooseHumanCell {
         contentView.addSubview(photoView)
         contentView.addSubview(nameLabel)
         contentView.addSubview(screenNameLabel)
-        contentView.addSubview(radioButton)
+        contentView.addSubview(radioView)
 
         photoView.backgroundColor = .grayColor()
         photoView.fullyRound(photoDiameter, borderColor: .dictatorLine(), borderWidth: 0.5)
@@ -83,7 +80,7 @@ private extension ChooseHumanCell {
             make.centerY.equalTo(contentView)
         }
 
-        radioButton.snp_makeConstraints { (make) in
+        radioView.snp_makeConstraints { (make) in
             make.size.equalTo(20)
             make.right.equalTo(contentView).offset(-10)
             make.centerY.equalTo(contentView)
@@ -93,7 +90,7 @@ private extension ChooseHumanCell {
             make.height.equalTo(24)
             make.left.equalTo(photoView.snp_right).offset(8)
             make.centerY.equalTo(contentView).offset(-5)
-            make.right.equalTo(radioButton.snp_left)
+            make.right.equalTo(radioView.snp_left)
         }
 
         screenNameLabel.snp_makeConstraints { (make) -> Void in

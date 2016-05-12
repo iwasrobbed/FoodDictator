@@ -24,7 +24,7 @@ class TableCell: UITableViewCell {
 private extension TableCell {
 
     func setupView() {
-        self.clipsToBounds = true
+        clipsToBounds = true
 
         let selectionView = UIView()
         selectionView.backgroundColor = .dictatorCellSelection()

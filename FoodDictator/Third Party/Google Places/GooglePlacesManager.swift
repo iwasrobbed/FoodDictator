@@ -53,7 +53,7 @@ class GooglePlacesManager {
     func fetchPlacesNearViv(query: String, type: GooglePlaceType = .restaurant, success: GooglePlacesBlock? = nil, error: GoogleErrorBlock? = nil) {
         let queryString = String(format: queryFormat, arguments: [pipedQueryFrom(query), type.toString(), radius, language, apiKey])
         guard let escapedQuery = queryString.stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet()) else {
-            fatalError("Malformed endpoint string when calling into Google Places API")
+            fatalError("Malformed query string when calling into Google Places API")
         }
         let endpoint = baseURL + escapedQuery
 
