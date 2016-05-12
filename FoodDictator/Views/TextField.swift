@@ -113,7 +113,9 @@ class TextField : UIView {
     private let container = UIView()
     private let textField = UITextField()
     lazy private var cancelButton: UIButton = {
-        return UIButton.dictatorImageOnly(UIImage(named: "SearchCancel")!, target: self, action: #selector(TextField.cancelTapped))
+        let button = UIButton.dictatorImageOnly(UIImage(named: "SearchCancel")!, target: self, action: #selector(TextField.cancelTapped))
+        button.enabled = false
+        return button
     }()
     private var roundedCornerStyle : RoundedCornerStyle?
 
@@ -144,7 +146,6 @@ private extension TextField {
             })
         }
 
-        // TODO: Fix textfield not overflowing correctly
         textField.font = .dictatorTextField()
         textField.delegate = self
         textField.placeholder = placeholder
@@ -170,6 +171,7 @@ private extension TextField {
     @objc func cancelTapped() {
         textField.text = ""
         textField.resignFirstResponder()
+        cancelButton.enabled = false
 
         cancelBlock?()
     }
@@ -182,9 +184,13 @@ extension TextField: UITextFieldDelegate {
 
     func textFieldDidBeginEditing(textField: UITextField) {
         beginEditingBlock?()
+
+        cancelButton.enabled = true
     }
 
     func textFieldDidChange() {
+        cancelButton.enabled = !(textField.text ?? "").isEmpty
+
         changedBlock?(text: textField.text!)
     }
 

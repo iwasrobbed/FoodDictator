@@ -45,7 +45,7 @@ extension UIView {
         layer.masksToBounds = true
         layer.cornerRadius = diameter / 2
         layer.borderWidth = borderWidth
-        layer.borderColor = borderColor.CGColor;
+        layer.borderColor = borderColor.CGColor
     }
 
 }

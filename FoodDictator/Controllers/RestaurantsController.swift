@@ -21,11 +21,26 @@ class RestaurantsController: BaseController {
         super.viewDidLoad()
 
         setupView()
+        searchRestaurants()
     }
 
     // MARK: - Private Properties
 
-    var restaurants = [Restaurant(), Restaurant(), Restaurant(), Restaurant(), Restaurant()]
+    var restaurants = [Restaurant]()
+
+    private lazy var searchField: TextField = {
+        let search = TextField(cornerStyle: .All, placeholder: RestaurantLocalizations.SearchPlaceholder, cancellable: false)
+        search.changedBlock = { (text: String) in
+            GooglePlacesManager.sharedManager.cancelAllFetches()
+
+            self.searchRestaurants(text)
+        }
+        search.endEditingBlock = {
+            GooglePlacesManager.sharedManager.cancelAllFetches()
+        }
+        return search
+    }()
+
 
     private let tableView: UITableView = {
         let table = UITableView()
@@ -48,7 +63,18 @@ private extension RestaurantsController {
         let title = String(format: RestaurantLocalizations.CityRestaurantsFormat, arguments: ["SJ"]).uppercaseString
         setupNavigation(title)
 
+        setupSearchField()
         setupTableView()
+    }
+
+    func setupSearchField() {
+        view.addSubview(searchField)
+        searchField.snp_makeConstraints { (make) -> Void in
+            make.width.equalTo(view).multipliedBy(TextField.widthMultiplier.full)
+            make.centerX.equalTo(view)
+            make.height.equalTo(TextField.height.search)
+            make.top.equalTo(view).offset(DictatorNavigationBar.height)
+        }
     }
 
     func setupTableView() {
@@ -57,7 +83,23 @@ private extension RestaurantsController {
         view.addSubview(tableView)
         tableView.snp_makeConstraints { (make) -> Void in
             make.left.right.bottom.equalTo(view)
-            make.top.equalTo(view).offset(DictatorNavigationBar.height)
+            make.top.equalTo(searchField.snp_bottom).offset(10)
+        }
+    }
+
+    // MARK: - Fetching Restaurants
+
+    func searchRestaurants(query: String = "Pizza") {
+        GooglePlacesManager.sharedManager.fetchPlacesNearViv(query, type: .restaurant, success: { (places) in
+            var restaurants = [Restaurant]()
+            for place in places {
+                restaurants.append(Restaurant(name: place.name, rating: place.rating, openNow: place.openNow))
+            }
+            self.restaurants = restaurants
+            self.tableView.reloadData()
+        }) { (_) in
+            self.restaurants = [Restaurant]()
+            self.tableView.reloadData()
         }
     }
     
@@ -76,9 +118,7 @@ extension RestaurantsController: UITableViewDataSource, UITableViewDelegate {
 
         let restaurant = restaurants[indexPath.row]
         cell.nameLabel.text = restaurant.name
-        cell.photoView.image = restaurant.photo
-
-        // TODO: Display other meta data like rating?
+        cell.updateMetaLabel(restaurant.openNow, rating: restaurant.rating)
 
         return cell
     }

@@ -23,7 +23,7 @@ class ChooseHumanCell: TableCell {
     }()
     private let photoDiameter: CGFloat = 40
 
-    let nameLabel = UILabel.dictatorLabel("", font: unselectedFont, alignment: .Left)
+    let nameLabel = UILabel.dictatorRegularLabel("")
     let screenNameLabel = UILabel.dictatorLabel("", font: UIFont.dictatorRegular(16), color: UIColor.dictatorGrayText(), alignment: .Left)
     lazy private var radioButton: UIButton = {
         let button = UIButton.dictatorImageOnly(UIImage(named:"UnselectedRadio")!, target: self, action: #selector(ChooseHumanCell.toggleSelection))

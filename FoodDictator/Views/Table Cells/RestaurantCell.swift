@@ -13,14 +13,8 @@ class RestaurantCell: TableCell {
     // MARK: - Properties
 
     static let cellReuseIdentifier = "RestaurantCell"
-    let nameLabel = UILabel.dictatorLabel("", font: UIFont.dictatorRegular(18), alignment: .Left)
-
-    let photoView: UIImageView = {
-        let view = UIImageView()
-        view.contentMode = .ScaleAspectFill
-        return view
-    }()
-    private let photoDiameter: CGFloat = 40
+    let nameLabel = UILabel.dictatorRegularLabel("")
+    let metaLabel = UILabel.dictatorLabel("", font: UIFont.dictatorRegular(16), color: UIColor.dictatorGrayText(), alignment: .Left)
     
     // MARK: - Lifecycle
 
@@ -28,7 +22,7 @@ class RestaurantCell: TableCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
         selectionStyle = .None
-        let insets = UIEdgeInsetsMake(0, photoDiameter + 20, 0, 0)
+        let insets = UIEdgeInsetsMake(0, 20, 0, 0)
         separatorInset = insets
         layoutMargins = insets
         preservesSuperviewLayoutMargins = false
@@ -38,6 +32,20 @@ class RestaurantCell: TableCell {
 
     required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
 
+    func updateMetaLabel(openNow: Bool?, rating: Float?) {
+        var openString = RestaurantLocalizations.hoursNA
+        if let openNow = openNow {
+            openString = openNow ? RestaurantLocalizations.openNow : RestaurantLocalizations.closed
+        }
+
+        var ratingString = RestaurantLocalizations.ratingNA
+        if let rating = rating {
+            ratingString = String(format: RestaurantLocalizations.ratingFormat, arguments: [rating])
+        }
+
+        metaLabel.text = [openString, ratingString].joinWithSeparator(", ")
+    }
+
 }
 
 private extension RestaurantCell {
@@ -45,23 +53,19 @@ private extension RestaurantCell {
     // MARK: - View Setup
 
     func setupView() {
-        contentView.addSubview(photoView)
         contentView.addSubview(nameLabel)
-
-        photoView.backgroundColor = .grayColor()
-        photoView.fullyRound(photoDiameter, borderColor: .dictatorLine(), borderWidth: 0.5)
-
-        photoView.snp_makeConstraints { (make) in
-            make.size.equalTo(photoDiameter)
-            make.left.equalTo(contentView).offset(10)
-            make.centerY.equalTo(contentView)
-        }
+        contentView.addSubview(metaLabel)
 
         nameLabel.snp_makeConstraints { (make) -> Void in
             make.height.equalTo(24)
-            make.left.equalTo(photoView.snp_right).offset(8)
-            make.centerY.equalTo(contentView)
+            make.left.equalTo(contentView).offset(20)
+            make.centerY.equalTo(contentView).offset(-8)
             make.right.equalTo(contentView).offset(-10)
+        }
+
+        metaLabel.snp_makeConstraints { (make) -> Void in
+            make.left.right.height.equalTo(nameLabel)
+            make.centerY.equalTo(contentView).offset(10)
         }
         
     }

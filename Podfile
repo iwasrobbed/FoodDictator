@@ -9,20 +9,14 @@ use_frameworks!
 # Twitter Login
 pod 'TwitterKit'
 
-# Restaurants (FourSquare)
-pod 'QuadratTouch'
+# Networking
+pod 'Alamofire'
 
 # Autolayout
 pod 'SnapKit'
 
-# UI & Animations
-pod 'RPCircularProgress'
-
 # Models
-pod 'CottonObject'
+pod 'CottonObject', :git => 'git@github.com:iwasrobbed/CottonObject.git', :branch => 'master'
 
 # Image Downloading
 pod 'SDWebImage'
-
-# Random data (for prototyping)
-pod 'SwiftRandom'

@@ -12,4 +12,12 @@ public struct RestaurantLocalizations {
 
     static let CityRestaurantsFormat = NSLocalizedString("%@ Restaurants", comment: "e.g. San Jose Restaurants")
 
+    static let SearchPlaceholder = NSLocalizedString("Search near Viv", comment: "")
+
+    static let hoursNA = NSLocalizedString("hours n/a", comment: "hours not available")
+    static let openNow = NSLocalizedString("open now", comment: "")
+    static let closed = NSLocalizedString("closed", comment: "")
+    static let ratingNA = NSLocalizedString("rating n/a", comment: "rating not available")
+    static let ratingFormat = NSLocalizedString("rating: %.1f", comment: "rating: 4.5")
+
 }

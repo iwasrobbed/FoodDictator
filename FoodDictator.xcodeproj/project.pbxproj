@@ -27,9 +27,12 @@
 		D45B7FE91CE233E300CDFF85 /* Texta-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = D45B7FE61CE233E300CDFF85 /* Texta-Medium.otf */; };
 		D45B7FEA1CE233E300CDFF85 /* Texta-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = D45B7FE71CE233E300CDFF85 /* Texta-Regular.otf */; };
 		D45B7FED1CE2352600CDFF85 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D45B7FEC1CE2352600CDFF85 /* LaunchScreen.storyboard */; };
+		D464E3A01CE41815002EBB74 /* GooglePlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = D464E39F1CE41815002EBB74 /* GooglePlace.swift */; };
+		D464E3A31CE4BE31002EBB74 /* APIJSONKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = D464E3A21CE4BE31002EBB74 /* APIJSONKeys.swift */; };
 		D466B33B1CE3CF2B00F2C322 /* TwitterLocalizations.swift in Sources */ = {isa = PBXBuildFile; fileRef = D466B33A1CE3CF2B00F2C322 /* TwitterLocalizations.swift */; };
 		D466B3401CE3E49000F2C322 /* TwitterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D466B33F1CE3E49000F2C322 /* TwitterManager.swift */; };
 		D466B3421CE3E4A100F2C322 /* TwitterUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D466B3411CE3E4A100F2C322 /* TwitterUser.swift */; };
+		D466B3451CE40D8200F2C322 /* GooglePlacesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D466B3441CE40D8200F2C322 /* GooglePlacesManager.swift */; };
 		D49A955C1CE19B22000ECD1A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49A955B1CE19B22000ECD1A /* AppDelegate.swift */; };
 		D49A95771CE19C0E000ECD1A /* FTUEController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49A956E1CE19C0E000ECD1A /* FTUEController.swift */; };
 		D49A95781CE19C0E000ECD1A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D49A95721CE19C0E000ECD1A /* Assets.xcassets */; };
@@ -64,9 +67,12 @@
 		D45B7FE61CE233E300CDFF85 /* Texta-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Texta-Medium.otf"; sourceTree = "<group>"; };
 		D45B7FE71CE233E300CDFF85 /* Texta-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Texta-Regular.otf"; sourceTree = "<group>"; };
 		D45B7FEC1CE2352600CDFF85 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		D464E39F1CE41815002EBB74 /* GooglePlace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GooglePlace.swift; sourceTree = "<group>"; };
+		D464E3A21CE4BE31002EBB74 /* APIJSONKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIJSONKeys.swift; sourceTree = "<group>"; };
 		D466B33A1CE3CF2B00F2C322 /* TwitterLocalizations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterLocalizations.swift; sourceTree = "<group>"; };
 		D466B33F1CE3E49000F2C322 /* TwitterManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterManager.swift; sourceTree = "<group>"; };
 		D466B3411CE3E4A100F2C322 /* TwitterUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterUser.swift; sourceTree = "<group>"; };
+		D466B3441CE40D8200F2C322 /* GooglePlacesManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GooglePlacesManager.swift; sourceTree = "<group>"; };
 		D49A95581CE19B22000ECD1A /* FoodDictator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodDictator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D49A955B1CE19B22000ECD1A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D49A956E1CE19C0E000ECD1A /* FTUEController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTUEController.swift; sourceTree = "<group>"; };
@@ -137,6 +143,14 @@
 			path = Launch;
 			sourceTree = "<group>";
 		};
+		D464E3A11CE4BE25002EBB74 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				D464E3A21CE4BE31002EBB74 /* APIJSONKeys.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
 		D466B33E1CE3E49000F2C322 /* Twitter */ = {
 			isa = PBXGroup;
 			children = (
@@ -144,6 +158,15 @@
 				D466B3411CE3E4A100F2C322 /* TwitterUser.swift */,
 			);
 			path = Twitter;
+			sourceTree = "<group>";
+		};
+		D466B3431CE40D7500F2C322 /* Google Places */ = {
+			isa = PBXGroup;
+			children = (
+				D466B3441CE40D8200F2C322 /* GooglePlacesManager.swift */,
+				D464E39F1CE41815002EBB74 /* GooglePlace.swift */,
+			);
+			path = "Google Places";
 			sourceTree = "<group>";
 		};
 		D49A954F1CE19B22000ECD1A = {
@@ -171,6 +194,7 @@
 				D49A956D1CE19C0E000ECD1A /* Controllers */,
 				D49A956F1CE19C0E000ECD1A /* Extensions */,
 				D49A95701CE19C0E000ECD1A /* Models */,
+				D464E3A11CE4BE25002EBB74 /* Constants */,
 				D49A95711CE19C0E000ECD1A /* Resources */,
 				D49A95731CE19C0E000ECD1A /* Supporting Files */,
 				D49A95751CE19C0E000ECD1A /* Third Party */,
@@ -233,6 +257,7 @@
 		D49A95751CE19C0E000ECD1A /* Third Party */ = {
 			isa = PBXGroup;
 			children = (
+				D466B3431CE40D7500F2C322 /* Google Places */,
 				D466B33E1CE3E49000F2C322 /* Twitter */,
 			);
 			path = "Third Party";
@@ -400,11 +425,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D466B3451CE40D8200F2C322 /* GooglePlacesManager.swift in Sources */,
 				D45758021CE290F600802AE5 /* RestaurantCell.swift in Sources */,
 				D45757FE1CE24E3900802AE5 /* TableCell.swift in Sources */,
 				D45757EF1CE239FD00802AE5 /* RestaurantsController.swift in Sources */,
+				D464E3A31CE4BE31002EBB74 /* APIJSONKeys.swift in Sources */,
 				D49A95821CE22495000ECD1A /* UILabel+Dictator.swift in Sources */,
 				D49A95771CE19C0E000ECD1A /* FTUEController.swift in Sources */,
+				D464E3A01CE41815002EBB74 /* GooglePlace.swift in Sources */,
 				D457580E1CE3718100802AE5 /* AlertView.swift in Sources */,
 				D466B3421CE3E4A100F2C322 /* TwitterUser.swift in Sources */,
 				D49A95841CE2249F000ECD1A /* UIButton+Dictator.swift in Sources */,

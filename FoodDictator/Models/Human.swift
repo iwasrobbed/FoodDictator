@@ -14,41 +14,16 @@ class Human: CottonObject {
 
     var isSelected = false
 
-    var fullName: String {
-        get {
-            return self.stringForGetter(#function)
-        }
-        set {
-            self.setString(newValue, forKey: #function)
-        }
-    }
-
-    var screenName: String {
-        get {
-            return self.stringForGetter(#function)
-        }
-        set {
-            self.setString(newValue, forKey: #function)
-        }
-    }
-
-    var photoURL: NSURL {
-        get {
-            return self.urlForGetter(#function)
-        }
-        set {
-            self.setUrl(newValue, forKey: #function)
-        }
-    }
+    var fullName: String    { return self.stringForKey(APIJSONKeys.fullName) }
+    var screenName: String  { return self.stringForKey(APIJSONKeys.screenName) }
+    var photoURL: NSURL     { return self.urlForKey(APIJSONKeys.photoURL) }
 
     // MARK: - Instantiation
 
     required init(fullName: String, screenName: String, photoURL: NSURL) {
-        super.init()
-
-        self.fullName = fullName
-        self.screenName = screenName
-        self.photoURL = photoURL
+        super.init(dictionary: [APIJSONKeys.fullName: fullName,
+                                APIJSONKeys.screenName: screenName,
+                                APIJSONKeys.photoURL : photoURL], removeNullKeys: true)
     }
 
     convenience init(fullName: String, screenName: String, photoURLString: String) {

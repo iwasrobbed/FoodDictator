@@ -74,7 +74,7 @@ private extension BaseController {
             let backButton = UIButton.dictatorBackButton(self, action: #selector(BaseController.backButtonTapped))
             navigationView.addSubview(backButton)
             backButton.snp_makeConstraints { (make) -> Void in
-                make.size.equalTo(CGSize(width: DictatorNavigationBar.buttonEdgeSize, height: DictatorNavigationBar.buttonEdgeSize))
+                make.size.equalTo(DictatorNavigationBar.buttonEdgeSize)
                 make.left.equalTo(navigationView).offset(3)
                 make.top.equalTo(navigationView).offset(DictatorNavigationBar.buttonTopOffset)
             }

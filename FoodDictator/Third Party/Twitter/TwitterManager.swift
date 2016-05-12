@@ -19,6 +19,8 @@ typealias TwitterHumansBlock = (humans: [Human]) -> Void
 
 class TwitterManager {
 
+    // MARK: - Lifecycle
+    
     /**
      *  Singleton instance of the manager
      */
@@ -72,6 +74,12 @@ class TwitterManager {
         }
     }
 
+    /**
+     Fetches the currently logged in person
+
+     - parameter success: Called after a successful fetch with the human returned
+     - parameter error:   Called during an error or bad data event
+     */
     func fetchCurrentHuman(success: TwitterHumanBlock? = nil, error: TwitterErrorBlock? = nil) {
         guard let activeSession = activeSession else {
             fatalError("Can only call into Twitter API with an active session")
@@ -93,11 +101,24 @@ class TwitterManager {
         }
     }
 
+    /**
+     Fetch the person's friends
+
+     - parameter success: Called after a successful fetch with the humans returned
+     - parameter error:   Called during an error or bad data event
+     */
     func fetchFriends(success: TwitterHumansBlock? = nil, error: TwitterErrorBlock? = nil) {
         let endpoint = "https://api.twitter.com/1.1/friends/list.json?skip_status=true&include_user_entities=false"
         fetchHumansFromEndpoint(endpoint, success: success, error: error)
     }
 
+    /**
+     Search all Twitter users
+
+     - parameter query:   The query to search with
+     - parameter success: Called after a successful fetch with the human returned
+     - parameter error:   Called during an error or bad data event
+     */
     func searchUsers(query: String, success: TwitterHumansBlock? = nil, error: TwitterErrorBlock? = nil) {
         let endpoint = "https://api.twitter.com/1.1/users/search.json?q=\(query)"
         fetchHumansFromEndpoint(endpoint, success: success, error: error)
