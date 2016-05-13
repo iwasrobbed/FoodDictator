@@ -9,6 +9,7 @@
 import UIKit
 import SnapKit
 import SDWebImage
+import AVFoundation
 
 /*
  * The dictator has arisen!
@@ -30,6 +31,7 @@ class DictatorController: BaseController {
         super.viewDidLoad()
 
         setupView()
+        playTrumpet()
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -58,6 +60,8 @@ class DictatorController: BaseController {
         let title = String(format: RestaurantLocalizations.CityRestaurantsFormat, arguments: ["San Jose"]).uppercaseString
         return UIButton.dictatorRounded(.Pink, title: title, target: self, action: #selector(DictatorController.viewRestaurants))
     }()
+
+    var player: AVAudioPlayer?
 
 }
 
@@ -141,13 +145,30 @@ private extension DictatorController {
         hatView.setNeedsLayout()
 
         UIView.animateWithDuration(0.75, delay: 0.5,
-                                   usingSpringWithDamping: 0.65,
+                                   usingSpringWithDamping: 0.75,
                                    initialSpringVelocity: 0.8,
                                    options: .CurveEaseIn,
                                    animations: { () -> Void in
                                     self.hatView.layoutIfNeeded()
                                     self.hatView.alpha = 1
             }, completion: nil)
+    }
+
+    // MARK: - Audio
+
+    func playTrumpet() {
+        let url = NSBundle.mainBundle().URLForResource("tada", withExtension: "mp3")!
+
+        do {
+            player = try AVAudioPlayer(contentsOfURL: url)
+            guard let player = player else { return }
+
+            let currentTime = player.deviceCurrentTime
+            player.prepareToPlay()
+            player.playAtTime(currentTime + 0.5)
+        } catch let error as NSError {
+            print(error.description)
+        }
     }
 
 }

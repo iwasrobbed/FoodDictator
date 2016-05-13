@@ -30,6 +30,7 @@
 		D464E3A01CE41815002EBB74 /* GooglePlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = D464E39F1CE41815002EBB74 /* GooglePlace.swift */; };
 		D464E3A31CE4BE31002EBB74 /* APIJSONKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = D464E3A21CE4BE31002EBB74 /* APIJSONKeys.swift */; };
 		D464E3A61CE52147002EBB74 /* HumanStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D464E3A51CE52147002EBB74 /* HumanStore.swift */; };
+		D464E3AA1CE5364C002EBB74 /* HUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = D464E3A91CE5364C002EBB74 /* HUD.swift */; };
 		D466B33B1CE3CF2B00F2C322 /* TwitterLocalizations.swift in Sources */ = {isa = PBXBuildFile; fileRef = D466B33A1CE3CF2B00F2C322 /* TwitterLocalizations.swift */; };
 		D466B3401CE3E49000F2C322 /* TwitterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D466B33F1CE3E49000F2C322 /* TwitterManager.swift */; };
 		D466B3421CE3E4A100F2C322 /* TwitterUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D466B3411CE3E4A100F2C322 /* TwitterUser.swift */; };
@@ -43,6 +44,8 @@
 		D49A95861CE224B6000ECD1A /* UIFont+Dictator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49A95851CE224B6000ECD1A /* UIFont+Dictator.swift */; };
 		D49A95881CE224CD000ECD1A /* UIView+Dictator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49A95871CE224CD000ECD1A /* UIView+Dictator.swift */; };
 		D49A958A1CE224DA000ECD1A /* BaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49A95891CE224DA000ECD1A /* BaseController.swift */; };
+		D4DBA7CB1CE53CA200985ECE /* Rubiks.gif in Resources */ = {isa = PBXBuildFile; fileRef = D4DBA7CA1CE53CA200985ECE /* Rubiks.gif */; };
+		D4DBA7CD1CE56A3B00985ECE /* tada.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D4DBA7CC1CE56A3B00985ECE /* tada.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,6 +74,7 @@
 		D464E39F1CE41815002EBB74 /* GooglePlace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GooglePlace.swift; sourceTree = "<group>"; };
 		D464E3A21CE4BE31002EBB74 /* APIJSONKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIJSONKeys.swift; sourceTree = "<group>"; };
 		D464E3A51CE52147002EBB74 /* HumanStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HumanStore.swift; sourceTree = "<group>"; };
+		D464E3A91CE5364C002EBB74 /* HUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HUD.swift; sourceTree = "<group>"; };
 		D466B33A1CE3CF2B00F2C322 /* TwitterLocalizations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterLocalizations.swift; sourceTree = "<group>"; };
 		D466B33F1CE3E49000F2C322 /* TwitterManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterManager.swift; sourceTree = "<group>"; };
 		D466B3411CE3E4A100F2C322 /* TwitterUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterUser.swift; sourceTree = "<group>"; };
@@ -86,6 +90,8 @@
 		D49A95851CE224B6000ECD1A /* UIFont+Dictator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+Dictator.swift"; sourceTree = "<group>"; };
 		D49A95871CE224CD000ECD1A /* UIView+Dictator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Dictator.swift"; sourceTree = "<group>"; };
 		D49A95891CE224DA000ECD1A /* BaseController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseController.swift; sourceTree = "<group>"; };
+		D4DBA7CA1CE53CA200985ECE /* Rubiks.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Rubiks.gif; sourceTree = "<group>"; };
+		D4DBA7CC1CE56A3B00985ECE /* tada.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = tada.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -250,6 +256,8 @@
 		D49A95711CE19C0E000ECD1A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D4DBA7CC1CE56A3B00985ECE /* tada.mp3 */,
+				D4DBA7CA1CE53CA200985ECE /* Rubiks.gif */,
 				D45B7FE41CE233E300CDFF85 /* Fonts */,
 				D49A957E1CE19CBD000ECD1A /* Localizations */,
 				D49A95721CE19C0E000ECD1A /* Assets.xcassets */,
@@ -277,6 +285,7 @@
 		D49A95761CE19C0E000ECD1A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D464E3A91CE5364C002EBB74 /* HUD.swift */,
 				D457580D1CE3718100802AE5 /* AlertView.swift */,
 				D45757F81CE24D2800802AE5 /* TextField.swift */,
 				D45B7FEB1CE2352600CDFF85 /* Launch */,
@@ -362,9 +371,11 @@
 			files = (
 				D45B7FE81CE233E300CDFF85 /* Texta-Bold.otf in Resources */,
 				D45B7FE91CE233E300CDFF85 /* Texta-Medium.otf in Resources */,
+				D4DBA7CB1CE53CA200985ECE /* Rubiks.gif in Resources */,
 				D45B7FED1CE2352600CDFF85 /* LaunchScreen.storyboard in Resources */,
 				D45B7FEA1CE233E300CDFF85 /* Texta-Regular.otf in Resources */,
 				D49A95781CE19C0E000ECD1A /* Assets.xcassets in Resources */,
+				D4DBA7CD1CE56A3B00985ECE /* tada.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -454,6 +465,7 @@
 				D464E3A61CE52147002EBB74 /* HumanStore.swift in Sources */,
 				D45758001CE2506B00802AE5 /* Human.swift in Sources */,
 				D45757FC1CE24E2C00802AE5 /* ChooseHumanCell.swift in Sources */,
+				D464E3AA1CE5364C002EBB74 /* HUD.swift in Sources */,
 				D45757F91CE24D2800802AE5 /* TextField.swift in Sources */,
 				D49A95881CE224CD000ECD1A /* UIView+Dictator.swift in Sources */,
 				D45757F31CE2421C00802AE5 /* DictatorLocalizations.swift in Sources */,

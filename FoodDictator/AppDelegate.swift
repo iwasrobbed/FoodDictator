@@ -8,6 +8,7 @@
 
 import UIKit
 import Fabric
+import AVFoundation
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,6 +19,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         // Fabric / Twitter
         Fabric.with([TwitterManager.sharedManager.twitterInstance])
+
+        // Audio
+        setupAudioSession()
 
         // View Setup
         setupRootView()
@@ -59,6 +63,17 @@ private extension AppDelegate {
         let navVC = UINavigationController(rootViewController: rootVC)
         window?.rootViewController = navVC
         window?.makeKeyAndVisible()
+    }
+
+    /**
+     Enable audio to play with the silent switch on
+     */
+    func setupAudioSession() {
+        do {
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+        } catch let error as NSError {
+            print(error.description)
+        }
     }
 
 }

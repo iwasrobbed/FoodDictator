@@ -123,9 +123,12 @@ private extension FTUEController {
     // MARK: - Actions
     
     @objc func signInTapped() {
+        signInButton.enabled = false
+
         TwitterManager.sharedManager.login({ (session) in
             self.navigationController?.pushViewController(ChooseFriendsController(), animated: true)
         }) { (errorMessage) in
+            self.signInButton.enabled = true
             self.showTwitterErrorMessage(errorMessage)
         }
     }

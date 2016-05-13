@@ -30,6 +30,8 @@ class ChooseFriendsController: BaseController {
 
     // MARK: - Private Properties
 
+    private let hud = HUD()
+
     private let humanStore = HumanStore()
     private var selectedHumans = Set<Human>()
     private var friends = [Human]()
@@ -42,20 +44,20 @@ class ChooseFriendsController: BaseController {
 
     private lazy var searchField: TextField = {
         let search = TextField(cornerStyle: .All, placeholder: FriendsLocalizations.SearchPlaceholder, cancellable: true)
-        search.beginEditingBlock = {
-            self.isSearching = true
+        search.beginEditingBlock = { [weak self] () in
+            self?.isSearching = true
         }
-        search.changedBlock = { (text: String) in
+        search.changedBlock = { [weak self] (text: String) in
             // TODO: TwitterKit doesn't support canceling pending requests like Alamofire
             // so we'd either need to do that ourselves or delay this change event from being called.
             // Currently, it could lead to a lagging request getting called when other requests were sent after
-            self.searchWithText(text)
+            self?.searchWithText(text)
         }
-        search.endEditingBlock = {
-            self.resetAfterSearching()
+        search.endEditingBlock = { [weak self] () in
+            self?.resetAfterSearching()
         }
-        search.cancelBlock = {
-            self.resetAfterSearching()
+        search.cancelBlock = { [weak self] () in
+            self?.resetAfterSearching()
         }
         return search
     }()
@@ -70,7 +72,14 @@ class ChooseFriendsController: BaseController {
     private let refreshControl = UIRefreshControl()
 
     lazy private var chooseButton: UIButton = {
-        return UIButton.dictatorRounded(.Pink, title: DictatorLocalizations.CHOOSEDICTATOR, target: self, action: #selector(ChooseFriendsController.chooseDictator))
+        let button = UIButton.dictatorRounded(.Pink, title: DictatorLocalizations.CHOOSEDICTATOR, target: self, action: #selector(ChooseFriendsController.chooseDictator))
+        button.enabled = false
+        return button
+    }()
+
+    lazy private var ejectButton: UIButton = {
+        let eject = UIButton.dictatorImageOnly(UIImage(named: "EjectButton")!, target: self, action: #selector(ChooseFriendsController.eject))
+        return eject
     }()
 
 }
@@ -88,6 +97,9 @@ private extension ChooseFriendsController {
         setupButton()
         setupTableView()
         setupRefreshView()
+
+        // Uncomment for debugging
+        //setupEjectButton()
     }
 
     func setupSearchField() {
@@ -127,6 +139,15 @@ private extension ChooseFriendsController {
         tableView.addSubview(refreshControl)
     }
 
+    func setupEjectButton() {
+        view.addSubview(ejectButton)
+        ejectButton.snp_makeConstraints { (make) -> Void in
+            make.size.equalTo(DictatorNavigationBar.buttonEdgeSize)
+            make.top.equalTo(view).offset(DictatorNavigationBar.buttonTopOffset)
+            make.left.equalTo(view).offset(10)
+        }
+    }
+
     // MARK: - Saved Humans
 
     func restoreSavedHumans() {
@@ -138,13 +159,15 @@ private extension ChooseFriendsController {
     // MARK: - Twitter
 
     @objc func fetchTwitterFriendsAndMe() {
-        // TODO Show HUD
+        hud.show()
+        
         if let currentHuman = TwitterManager.sharedManager.currentHuman {
             insertCurrentHumanAndFetchFriends(currentHuman)
         } else {
             TwitterManager.sharedManager.fetchCurrentHuman({ (currentHuman) in
                 self.insertCurrentHumanAndFetchFriends(currentHuman)
             }) { (errorMessage) in
+                self.hud.hide()
                 self.showFetchErrorMessage(errorMessage)
             }
         }
@@ -160,8 +183,11 @@ private extension ChooseFriendsController {
     func fetchTwitterFriends() {
         TwitterManager.sharedManager.fetchFriends({ (humans) in
             self.updateTableWithTwitterFriends(humans)
+            self.chooseButton.enabled = true
         }) { (errorMessage) in
             self.showFetchErrorMessage(errorMessage)
+            self.refreshControl.endRefreshing()
+            self.hud.hide()
         }
     }
 
@@ -176,6 +202,7 @@ private extension ChooseFriendsController {
         }
         tableView.reloadData()
         refreshControl.endRefreshing()
+        hud.hide()
     }
 
     // MARK: - Search
@@ -207,8 +234,16 @@ private extension ChooseFriendsController {
     // MARK: - Actions
 
     @objc func chooseDictator() {
-        let dictator = selectedHumans.first!
+        let options = Array(selectedHumans)
+        // arc4random_uniform is not inclusive of upper bound, so no worry about out of bounds
+        let index = Int(arc4random_uniform(UInt32(options.count)))
+        let dictator = options[index]
+
         navigationController?.pushViewController(DictatorController(human: dictator), animated: true)
+    }
+
+    @objc func eject() {
+        TwitterManager.sharedManager.logOut()
     }
 
     // MARK: - Helper Methods

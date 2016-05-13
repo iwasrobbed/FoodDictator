@@ -70,7 +70,17 @@ class TwitterManager {
                 return
             }
 
+            self.activeSession = session
             success?(session: session)
+        }
+    }
+
+    /**
+      Logout the current session (removes from the keychain as well)
+     */
+    func logOut() {
+        if let twitterUserID = twitterUserID {
+            twitterInstance.sessionStore.logOutUserID(twitterUserID)
         }
     }
 
@@ -96,6 +106,7 @@ class TwitterManager {
                 return
             }
 
+            self.twitterUserID = user.userID
             self.currentHuman = Human(fullName: user.name, screenName: user.screenName, photoURLString: user.profileImageLargeURL)
             success?(human: self.currentHuman!)
         }
@@ -136,6 +147,8 @@ class TwitterManager {
     lazy private var activeSession: TWTRAuthSession? = {
         return self.twitterInstance.sessionStore.session()
     }()
+
+    var twitterUserID: String?
 
 }
 

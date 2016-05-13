@@ -20,3 +20,6 @@ pod 'CottonObject', :git => 'git@github.com:iwasrobbed/CottonObject.git', :branc
 
 # Image Downloading
 pod 'SDWebImage'
+
+# GIF
+pod 'SwiftyGif'

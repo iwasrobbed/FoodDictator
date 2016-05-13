@@ -22,18 +22,22 @@ class RestaurantsController: BaseController {
 
         setupView()
         searchRestaurants()
+
+        // TODO: Should have keyboard avoidance to shrink the table view size
+        // Just hit the return key on the keyboard for now
     }
 
     // MARK: - Private Properties
 
+    private let hud = HUD()
     var restaurants = [Restaurant]()
 
     private lazy var searchField: TextField = {
         let search = TextField(cornerStyle: .All, placeholder: RestaurantLocalizations.SearchPlaceholder, cancellable: false)
-        search.changedBlock = { (text: String) in
+        search.changedBlock = { [weak self] (text: String) in
             GooglePlacesManager.sharedManager.cancelAllFetches()
 
-            self.searchRestaurants(text)
+            self?.searchRestaurants(text)
         }
         search.endEditingBlock = {
             GooglePlacesManager.sharedManager.cancelAllFetches()
@@ -90,6 +94,8 @@ private extension RestaurantsController {
     // MARK: - Fetching Restaurants
 
     func searchRestaurants(query: String = "Pizza") {
+        hud.show()
+
         GooglePlacesManager.sharedManager.fetchPlacesNearViv(query, type: .restaurant, success: { (places) in
             var restaurants = [Restaurant]()
             for place in places {
@@ -97,9 +103,11 @@ private extension RestaurantsController {
             }
             self.restaurants = restaurants
             self.tableView.reloadData()
+            self.hud.hide()
         }) { (_) in
             self.restaurants = [Restaurant]()
             self.tableView.reloadData()
+            self.hud.hide()
         }
     }
     
