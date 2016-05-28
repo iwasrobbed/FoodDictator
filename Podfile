@@ -1,4 +1,4 @@
-platform :ios, '8.0'
+platform :ios, '9.0'
 
 # ignore all warnings from all pods
 inhibit_all_warnings!
@@ -16,7 +16,7 @@ pod 'Alamofire'
 pod 'SnapKit'
 
 # Models
-pod 'CottonObject', :git => 'git@github.com:iwasrobbed/CottonObject.git', :branch => 'master'
+pod 'LazyObject'
 
 # Image Downloading
 pod 'SDWebImage'

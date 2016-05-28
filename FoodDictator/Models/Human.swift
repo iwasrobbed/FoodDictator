@@ -6,34 +6,44 @@
 //  Copyright © 2016 Viv Labs. All rights reserved.
 //
 
-import CottonObject
+import LazyObject
 
-class Human: CottonObject {
+class Human: NSObject, LazyMapping, NSCoding {
+
+    var dictionary: NSMutableDictionary
 
     // MARK: - Properties
 
-    var fullName: String    { return stringForKey(APIJSONKeys.fullName) }
-    var screenName: String  { return stringForKey(APIJSONKeys.screenName) }
-    var photoURL: NSURL     { return urlForKey(APIJSONKeys.photoURL) }
+    var fullName: String    { return try! objectFor(APIJSONKeys.fullName) }
+    var screenName: String  { return try! objectFor(APIJSONKeys.screenName) }
+    var photoURL: NSURL     { return try! objectFor(APIJSONKeys.photoURL) }
 
     // MARK: - Instantiation
 
-    required init(fullName: String, screenName: String, photoURL: NSURL) {
-        super.init(dictionary: [APIJSONKeys.fullName: fullName,
-                                APIJSONKeys.screenName: screenName,
-                                APIJSONKeys.photoURL : photoURL], removeNullKeys: true)
+    required convenience init(fullName: String, screenName: String, photoURL: NSURL) {
+        let dictionary = [APIJSONKeys.fullName: fullName,
+                          APIJSONKeys.screenName: screenName,
+                          APIJSONKeys.photoURL : photoURL]
+        self.init(dictionary: dictionary, pruneNullValues: true)
     }
 
     convenience init(fullName: String, screenName: String, photoURLString: String) {
         self.init(fullName: fullName, screenName: screenName, photoURL: NSURL(string: photoURLString)!)
     }
 
-    required override init!(dictionary: [NSObject : AnyObject]!, removeNullKeys: Bool) {
-        super.init(dictionary: dictionary, removeNullKeys: removeNullKeys)
+    required init(dictionary: NSDictionary, pruneNullValues: Bool = true) {
+        self.dictionary = NSMutableDictionary(dictionary: pruneNullValues ? dictionary.pruneNullValues() : dictionary)
     }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+
+    // MARK: - NSCoding
+
+    @objc func encodeWithCoder(aCoder: NSCoder) {
+        dictionary.encodeWithCoder(aCoder)
+    }
+
+    @objc required convenience init?(coder aDecoder: NSCoder) {
+        guard let dictionary = NSDictionary(coder: aDecoder) else { return nil }
+        self.init(dictionary: dictionary, pruneNullValues: true)
     }
 
 }
@@ -58,4 +68,5 @@ extension Human {
     override var hash: Int {
         return screenName.hash
     }
+
 }

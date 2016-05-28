@@ -1,7 +1,7 @@
 PODS:
   - Alamofire (3.4.0)
-  - CottonObject (0.0.5)
   - Fabric (1.6.7)
+  - LazyObject (0.2.1)
   - SDWebImage (3.7.6):
     - SDWebImage/Core (= 3.7.6)
   - SDWebImage/Core (3.7.6)
@@ -14,26 +14,16 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
-  - CottonObject (from `git@github.com:iwasrobbed/CottonObject.git`, branch `master`)
+  - LazyObject
   - SDWebImage
   - SnapKit
   - SwiftyGif
   - TwitterKit
 
-EXTERNAL SOURCES:
-  CottonObject:
-    :branch: master
-    :git: git@github.com:iwasrobbed/CottonObject.git
-
-CHECKOUT OPTIONS:
-  CottonObject:
-    :commit: 8056c3998c6c3cc7b4c9cea50825a52168e4e565
-    :git: git@github.com:iwasrobbed/CottonObject.git
-
 SPEC CHECKSUMS:
   Alamofire: c19a627cefd6a95f840401c49ab1f124e07f54ee
-  CottonObject: d651221bd6e49705cdf49a47f40f7d163c5f5592
   Fabric: caf7580c725e64db144f610ac65cd60956911dc7
+  LazyObject: ef6e4578b8faa11d21423654ecddf6742e9689b6
   SDWebImage: c325cf02c30337336b95beff20a13df489ec0ec9
   SnapKit: 5fce3c1bbbf1fbd31de9aa92f33eb9fa03f15650
   SwiftyGif: ede36725afc8fe16273ffc3418818d51af681a95
