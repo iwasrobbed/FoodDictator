@@ -1,7 +1,7 @@
 PODS:
   - Alamofire (3.4.0)
   - Fabric (1.6.7)
-  - LazyObject (0.2.1)
+  - LazyObject (0.2.2)
   - SDWebImage (3.7.6):
     - SDWebImage/Core (= 3.7.6)
   - SDWebImage/Core (3.7.6)
@@ -23,7 +23,7 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   Alamofire: c19a627cefd6a95f840401c49ab1f124e07f54ee
   Fabric: caf7580c725e64db144f610ac65cd60956911dc7
-  LazyObject: ef6e4578b8faa11d21423654ecddf6742e9689b6
+  LazyObject: 9cd047da18d5c6991a940a684c7e983c5296612a
   SDWebImage: c325cf02c30337336b95beff20a13df489ec0ec9
   SnapKit: 5fce3c1bbbf1fbd31de9aa92f33eb9fa03f15650
   SwiftyGif: ede36725afc8fe16273ffc3418818d51af681a95
