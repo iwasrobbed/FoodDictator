@@ -41,13 +41,13 @@ class BaseController: UIViewController {
 
      - parameter title: The navigation title to display
      */
-    func setupNavigation(title: String = "", backButton: Bool = true) {
+    func setupNavigation(_ title: String = "", backButton: Bool = true) {
         _setupNavigation(title, backButton: backButton)
     }
 
     // MARK: - Status Bar
 
-    override func prefersStatusBarHidden() -> Bool {
+    override var prefersStatusBarHidden : Bool {
         return true
     }
 
@@ -59,7 +59,7 @@ private extension BaseController {
 
     func setupView() {
         // We don't use the navigation bar as-is; we create our own
-        navigationController?.navigationBarHidden = true
+        navigationController?.isNavigationBarHidden = true
         automaticallyAdjustsScrollViewInsets = false
 
         view.backgroundColor = .dictatorWhite()
@@ -67,13 +67,13 @@ private extension BaseController {
 
     // MARK: - Custom Navigation Bar
 
-    func _setupNavigation(title: String, backButton: Bool) {
+    func _setupNavigation(_ title: String, backButton: Bool) {
 
         // Back button
         if backButton {
             let backButton = UIButton.dictatorBackButton(self, action: #selector(BaseController.backButtonTapped))
             navigationView.addSubview(backButton)
-            backButton.snp_makeConstraints { (make) -> Void in
+            backButton.snp.makeConstraints { (make) -> Void in
                 make.size.equalTo(DictatorNavigationBar.buttonEdgeSize)
                 make.left.equalTo(navigationView).offset(3)
                 make.top.equalTo(navigationView).offset(DictatorNavigationBar.buttonTopOffset)
@@ -84,7 +84,7 @@ private extension BaseController {
         if title != "" {
             let navLabel = UILabel.dictatorNavigationLabel(title)
             navigationView.addSubview(navLabel)
-            navLabel.snp_makeConstraints { (make) -> Void in
+            navLabel.snp.makeConstraints { (make) -> Void in
                 make.height.equalTo(40)
                 // Leave room for potential nav buttons
                 make.width.equalTo(navigationView).multipliedBy(0.8)
@@ -95,7 +95,7 @@ private extension BaseController {
 
         // Setup container view
         view.addSubview(navigationView)
-        navigationView.snp_makeConstraints { (make) -> Void in
+        navigationView.snp.makeConstraints { (make) -> Void in
             make.height.equalTo(DictatorNavigationBar.height)
             make.top.equalTo(view)
             make.left.equalTo(view)
@@ -106,7 +106,7 @@ private extension BaseController {
     // MARK: - Actions
     
     @objc func backButtonTapped() {
-        navigationController?.popViewControllerAnimated(true)
+        _ = navigationController?.popViewController(animated: true)
     }
     
 }

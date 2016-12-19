@@ -13,19 +13,19 @@ class ChooseHumanCell: TableCell {
     // MARK: - Properties
 
     static let cellReuseIdentifier = "ChooseHumanCell"
-    private static let unselectedFont = UIFont.dictatorRegular(18)
-    private static let selectedFont = UIFont.dictatorBold(18)
+    fileprivate static let unselectedFont = UIFont.dictatorRegular(18)
+    fileprivate static let selectedFont = UIFont.dictatorBold(18)
 
     let photoView: UIImageView = {
         let view = UIImageView()
-        view.contentMode = .ScaleAspectFill
+        view.contentMode = .scaleAspectFill
         return view
     }()
-    private let photoDiameter: CGFloat = 40
+    fileprivate let photoDiameter: CGFloat = 40
 
     let nameLabel = UILabel.dictatorRegularLabel("")
-    let screenNameLabel = UILabel.dictatorLabel("", font: UIFont.dictatorRegular(16), color: UIColor.dictatorGrayText(), alignment: .Left)
-    private var radioView = UIImageView(image: UIImage(named:"UnselectedRadio")!)
+    let screenNameLabel = UILabel.dictatorLabel("", font: UIFont.dictatorRegular(16), color: UIColor.dictatorGrayText(), alignment: .left)
+    fileprivate var radioView = UIImageView(image: UIImage(named:"UnselectedRadio")!)
 
     var humanSelected = false {
         didSet {
@@ -40,7 +40,7 @@ class ChooseHumanCell: TableCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
-        selectionStyle = .None
+        selectionStyle = .none
         let insets = UIEdgeInsetsMake(0, photoDiameter + 20, 0, 0)
         separatorInset = insets
         layoutMargins = insets
@@ -71,29 +71,29 @@ private extension ChooseHumanCell {
         contentView.addSubview(screenNameLabel)
         contentView.addSubview(radioView)
 
-        photoView.backgroundColor = .grayColor()
+        photoView.backgroundColor = .gray
         photoView.fullyRound(photoDiameter, borderColor: .dictatorLine(), borderWidth: 0.5)
 
-        photoView.snp_makeConstraints { (make) in
+        photoView.snp.makeConstraints { (make) in
             make.size.equalTo(photoDiameter)
             make.left.equalTo(contentView).offset(10)
             make.centerY.equalTo(contentView)
         }
 
-        radioView.snp_makeConstraints { (make) in
+        radioView.snp.makeConstraints { (make) in
             make.size.equalTo(20)
             make.right.equalTo(contentView).offset(-10)
             make.centerY.equalTo(contentView)
         }
 
-        nameLabel.snp_makeConstraints { (make) -> Void in
+        nameLabel.snp.makeConstraints { (make) -> Void in
             make.height.equalTo(24)
-            make.left.equalTo(photoView.snp_right).offset(8)
+            make.left.equalTo(photoView.snp.right).offset(8)
             make.centerY.equalTo(contentView).offset(-5)
-            make.right.equalTo(radioView.snp_left)
+            make.right.equalTo(radioView.snp.left)
         }
 
-        screenNameLabel.snp_makeConstraints { (make) -> Void in
+        screenNameLabel.snp.makeConstraints { (make) -> Void in
             make.left.right.height.equalTo(nameLabel)
             make.centerY.equalTo(contentView).offset(10)
         }

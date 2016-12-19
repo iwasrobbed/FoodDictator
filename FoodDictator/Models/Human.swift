@@ -16,19 +16,19 @@ class Human: NSObject, LazyMapping, NSCoding {
 
     var fullName: String    { return try! objectFor(APIJSONKeys.fullName) }
     var screenName: String  { return try! objectFor(APIJSONKeys.screenName) }
-    var photoURL: NSURL     { return try! objectFor(APIJSONKeys.photoURL) }
+    var photoURL: URL     { return try! objectFor(APIJSONKeys.photoURL) }
 
     // MARK: - Instantiation
 
-    required convenience init(fullName: String, screenName: String, photoURL: NSURL) {
+    required convenience init(fullName: String, screenName: String, photoURL: URL) {
         let dictionary = [APIJSONKeys.fullName: fullName,
                           APIJSONKeys.screenName: screenName,
-                          APIJSONKeys.photoURL : photoURL]
-        self.init(dictionary: dictionary, pruneNullValues: true)
+                          APIJSONKeys.photoURL : photoURL] as [String : Any]
+        self.init(dictionary: dictionary as NSDictionary, pruneNullValues: true)
     }
 
     convenience init(fullName: String, screenName: String, photoURLString: String) {
-        self.init(fullName: fullName, screenName: screenName, photoURL: NSURL(string: photoURLString)!)
+        self.init(fullName: fullName, screenName: screenName, photoURL: URL(string: photoURLString)!)
     }
 
     required init(dictionary: NSDictionary, pruneNullValues: Bool = true) {
@@ -37,8 +37,8 @@ class Human: NSObject, LazyMapping, NSCoding {
 
     // MARK: - NSCoding
 
-    @objc func encodeWithCoder(aCoder: NSCoder) {
-        dictionary.encodeWithCoder(aCoder)
+    @objc func encode(with aCoder: NSCoder) {
+        dictionary.encode(with: aCoder)
     }
 
     @objc required convenience init?(coder aDecoder: NSCoder) {
@@ -52,7 +52,7 @@ class Human: NSObject, LazyMapping, NSCoding {
 
 extension Human {
 
-    override func isEqual(object: AnyObject?) -> Bool {
+    override func isEqual(_ object: Any?) -> Bool {
         if object == nil {
             return false
         }

@@ -10,28 +10,28 @@ import Foundation
 
 class HumanStore {
 
-    private let storageKey = "DictatorHumans"
-    private let defaults = NSUserDefaults.standardUserDefaults()
+    fileprivate let storageKey = "DictatorHumans"
+    fileprivate let defaults = UserDefaults.standard
 
-    func store(human: Human) {
+    func store(_ human: Human) {
         var humans = retrieveAll() ?? Set<Human>()
         humans.insert(human)
         store(humans)
     }
 
     func retrieveAll() -> Set<Human>? {
-        guard let data = defaults.dataForKey(storageKey) else { return nil }
-        return NSKeyedUnarchiver.unarchiveObjectWithData(data) as? Set<Human>
+        guard let data = defaults.data(forKey: storageKey) else { return nil }
+        return NSKeyedUnarchiver.unarchiveObject(with: data) as? Set<Human>
     }
 
-    func remove(human: Human) {
+    func remove(_ human: Human) {
         guard var humans = retrieveAll() else { return }
         humans.remove(human)
         store(humans)
     }
 
     func flush() {
-        defaults.removeObjectForKey(storageKey)
+        defaults.removeObject(forKey: storageKey)
         defaults.synchronize()
     }
 
@@ -39,9 +39,9 @@ class HumanStore {
 
 private extension HumanStore {
 
-    func store(humans: Set<Human>) {
-        let data = NSKeyedArchiver.archivedDataWithRootObject(humans)
-        defaults.setObject(data, forKey: storageKey)
+    func store(_ humans: Set<Human>) {
+        let data = NSKeyedArchiver.archivedData(withRootObject: humans)
+        defaults.set(data, forKey: storageKey)
         defaults.synchronize()
     }
 

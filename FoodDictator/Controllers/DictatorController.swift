@@ -34,7 +34,7 @@ class DictatorController: BaseController {
         playTrumpet()
     }
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
         animateHat()
@@ -42,23 +42,23 @@ class DictatorController: BaseController {
 
     // MARK: - Private Properties
 
-    private var human: Human
+    fileprivate var human: Human
 
-    private let hatView = UIImageView(image: UIImage(named: "DictatorHat"))
-    private var hatBottomConstraint: Constraint?
+    fileprivate let hatView = UIImageView(image: UIImage(named: "DictatorHat"))
+    fileprivate var hatBottomConstraint: Constraint?
 
-    private let photoView = UIImageView()
-    private let photoDiameter: CGFloat = 150
-    private let nameLabel = UILabel.dictatorHeader4Label("")
+    fileprivate let photoView = UIImageView()
+    fileprivate let photoDiameter: CGFloat = 150
+    fileprivate let nameLabel = UILabel.dictatorHeader4Label("")
 
-    lazy private var revoltButton: UIButton = {
-        return UIButton.dictatorRounded(.Blue, title: DictatorLocalizations.REVOLT, target: self, action: #selector(DictatorController.revoltAgainstDictator))
+    lazy fileprivate var revoltButton: UIButton = {
+        return UIButton.dictatorRounded(.blue, title: DictatorLocalizations.REVOLT, target: self, action: #selector(DictatorController.revoltAgainstDictator))
     }()
 
-    lazy private var restaurantsButton: UIButton = {
+    lazy fileprivate var restaurantsButton: UIButton = {
         // TODO: Set specific city or "nearby" one day
-        let title = String(format: RestaurantLocalizations.CityRestaurantsFormat, arguments: ["San Jose"]).uppercaseString
-        return UIButton.dictatorRounded(.Pink, title: title, target: self, action: #selector(DictatorController.viewRestaurants))
+        let title = String(format: RestaurantLocalizations.CityRestaurantsFormat, arguments: ["San Jose"]).uppercased()
+        return UIButton.dictatorRounded(.pink, title: title, target: self, action: #selector(DictatorController.viewRestaurants))
     }()
 
     var player: AVAudioPlayer?
@@ -85,27 +85,27 @@ private extension DictatorController {
 
         nameLabel.text = human.fullName
 
-        photoView.sd_setImageWithURL(human.photoURL)
-        photoView.backgroundColor = .grayColor()
+        photoView.sd_setImage(with: human.photoURL)
+        photoView.backgroundColor = .gray
         photoView.fullyRound(photoDiameter, borderColor: .dictatorLine(), borderWidth: 0.5)
-        photoView.snp_makeConstraints { (make) in
+        photoView.snp.makeConstraints { (make) in
             make.size.equalTo(photoDiameter)
             make.centerX.equalTo(view)
-            make.bottom.equalTo(view.snp_centerY)
+            make.bottom.equalTo(view.snp.centerY)
         }
 
         hatView.alpha = 0
-        hatView.snp_makeConstraints { (make) in
-            make.size.equalTo(CGSizeMake(120, 87))
+        hatView.snp.makeConstraints { (make) in
+            make.size.equalTo(CGSize(width: 120, height: 87))
             make.centerX.equalTo(photoView)
-            hatBottomConstraint = make.bottom.equalTo(photoView.snp_top).offset(-50).constraint
+            hatBottomConstraint = make.bottom.equalTo(photoView.snp.top).offset(-50).constraint
         }
 
-        nameLabel.snp_makeConstraints { (make) -> Void in
+        nameLabel.snp.makeConstraints { (make) -> Void in
             make.height.equalTo(40)
             make.width.equalTo(view)
             make.centerX.equalTo(photoView)
-            make.top.equalTo(photoView.snp_bottom).offset(5)
+            make.top.equalTo(photoView.snp.bottom).offset(5)
         }
     }
 
@@ -113,23 +113,23 @@ private extension DictatorController {
         view.addSubview(restaurantsButton)
         view.addSubview(revoltButton)
 
-        restaurantsButton.snp_makeConstraints { (make) -> Void in
+        restaurantsButton.snp.makeConstraints { (make) -> Void in
             make.width.equalTo(view).multipliedBy(UIButton.dictatorConfig.buttonWidthPercentage)
             make.bottom.equalTo(view).offset(-20)
             make.height.equalTo(UIButton.dictatorConfig.buttonHeight)
             make.centerX.equalTo(view)
         }
 
-        revoltButton.snp_makeConstraints { (make) -> Void in
+        revoltButton.snp.makeConstraints { (make) -> Void in
             make.width.centerX.height.equalTo(restaurantsButton)
-            make.bottom.equalTo(restaurantsButton.snp_top).offset(-10)
+            make.bottom.equalTo(restaurantsButton.snp.top).offset(-10)
         }
     }
 
     // MARK: - Actions
 
     @objc func revoltAgainstDictator() {
-        navigationController?.popViewControllerAnimated(true)
+        _ = navigationController?.popViewController(animated: true)
     }
 
     @objc func viewRestaurants() {
@@ -141,13 +141,13 @@ private extension DictatorController {
     func animateHat() {
         view.layoutIfNeeded()
 
-        hatBottomConstraint!.updateOffset(30)
+        hatBottomConstraint!.update(offset: 30)
         hatView.setNeedsLayout()
 
-        UIView.animateWithDuration(0.75, delay: 0.5,
+        UIView.animate(withDuration: 0.75, delay: 0.5,
                                    usingSpringWithDamping: 0.75,
                                    initialSpringVelocity: 0.8,
-                                   options: .CurveEaseIn,
+                                   options: .curveEaseIn,
                                    animations: { () -> Void in
                                     self.hatView.layoutIfNeeded()
                                     self.hatView.alpha = 1
@@ -157,15 +157,15 @@ private extension DictatorController {
     // MARK: - Audio
 
     func playTrumpet() {
-        let url = NSBundle.mainBundle().URLForResource("tada", withExtension: "mp3")!
+        let url = Bundle.main.url(forResource: "tada", withExtension: "mp3")!
 
         do {
-            player = try AVAudioPlayer(contentsOfURL: url)
+            player = try AVAudioPlayer(contentsOf: url)
             guard let player = player else { return }
 
             let currentTime = player.deviceCurrentTime
             player.prepareToPlay()
-            player.playAtTime(currentTime + 0.5)
+            player.play(atTime: currentTime + 0.5)
         } catch let error as NSError {
             print(error.description)
         }

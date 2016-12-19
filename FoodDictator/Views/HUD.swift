@@ -17,14 +17,14 @@ class HUD: NSObject {
      Show the HUD
      */
     func show() {
-        animate(showing: true)
+        animate(true)
     }
 
     /**
      Hide the HUD
      */
     func hide() {
-        animate(showing: false)
+        animate(false)
     }
 
     // MARK: - Public Properties
@@ -44,23 +44,23 @@ class HUD: NSObject {
 
     // MARK: - Private Properties
 
-    lazy private var overlayView: UIControl = {
-        let view = UIControl(frame: UIScreen.mainScreen().bounds)
-        view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
-        view.backgroundColor = UIColor.clearColor()
+    lazy fileprivate var overlayView: UIControl = {
+        let view = UIControl(frame: UIScreen.main.bounds)
+        view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        view.backgroundColor = UIColor.clear
         view.alpha = 0
         return view
     }()
 
-    lazy private var hud: UIView = {
+    lazy fileprivate var hud: UIView = {
         let hud = UIView()
         hud.backgroundColor = .dictatorWhite()
         hud.alpha = 0
         return hud
     }()
 
-    private var wasAddedToMainWindow = false
-    private let gifManager = SwiftyGifManager(memoryLimit:10) // mb
+    fileprivate var wasAddedToMainWindow = false
+    fileprivate let gifManager = SwiftyGifManager(memoryLimit:10) // mb
 }
 
 private extension HUD {
@@ -73,10 +73,10 @@ private extension HUD {
     }
 
     func addOverlayToKeyWindow() {
-        let windows = UIApplication.sharedApplication().windows.reverse()
+        let windows = UIApplication.shared.windows.reversed()
         for window in windows {
-            let windowIsOnScreen = window.screen == UIScreen.mainScreen()
-            let windowIsVisible = !window.hidden && window.alpha > 0
+            let windowIsOnScreen = window.screen == UIScreen.main
+            let windowIsVisible = !window.isHidden && window.alpha > 0
             let windowIsNormalLevel = window.windowLevel == UIWindowLevelNormal
 
             if windowIsOnScreen && windowIsVisible && windowIsNormalLevel {
@@ -90,7 +90,7 @@ private extension HUD {
         let diameter: CGFloat = 60
         overlayView.addSubview(hud)
         hud.fullyRound(diameter, borderColor: .dictatorLine(), borderWidth: 0.5)
-        hud.snp_makeConstraints { (make) in
+        hud.snp.makeConstraints { (make) in
             make.size.equalTo(diameter)
             make.center.equalTo(overlayView)
         }
@@ -98,7 +98,7 @@ private extension HUD {
         let gif = UIImage(gifName: "Rubiks")
         let gifView = UIImageView(gifImage: gif, manager: self.gifManager)
         hud.addSubview(gifView)
-        gifView.snp_makeConstraints { (make) in
+        gifView.snp.makeConstraints { (make) in
             make.size.equalTo(50)
             make.center.equalTo(hud)
         }
@@ -106,21 +106,21 @@ private extension HUD {
 
     // MARK: - Animations
 
-    func animate(showing showing: Bool) {
+    func animate(_ showing: Bool) {
         isShowing = showing
 
         if !wasAddedToMainWindow {
             addOverlayToKeyWindow()
         }
 
-        UIView.animateWithDuration(0.3, delay: 0,
+        UIView.animate(withDuration: 0.3, delay: 0,
                                    usingSpringWithDamping: 1,
                                    initialSpringVelocity: 0.8,
-                                   options: [.CurveEaseInOut, .BeginFromCurrentState],
+                                   options: .beginFromCurrentState,
                                    animations: { () -> Void in
                                     self.hud.alpha = showing ? 1 : 0
                                     self.overlayView.alpha = showing ? 1 : 0
-                                    self.overlayView.backgroundColor = showing ? UIColor(white: 0, alpha: 0.1) : .clearColor()
+                                    self.overlayView.backgroundColor = showing ? UIColor(white: 0, alpha: 0.1) : .clear
             }, completion: nil)
     }
 }

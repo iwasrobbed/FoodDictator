@@ -1,16 +1,16 @@
 PODS:
-  - Alamofire (3.4.0)
-  - Fabric (1.6.7)
-  - LazyObject (0.2.2)
-  - SDWebImage (3.7.6):
-    - SDWebImage/Core (= 3.7.6)
-  - SDWebImage/Core (3.7.6)
-  - SnapKit (0.20.0)
-  - SwiftyGif (1.2.1)
-  - TwitterCore (2.0.2):
+  - Alamofire (4.2.0)
+  - Fabric (1.6.11)
+  - LazyObject (0.3)
+  - SDWebImage (3.8.2):
+    - SDWebImage/Core (= 3.8.2)
+  - SDWebImage/Core (3.8.2)
+  - SnapKit (3.0.2)
+  - SwiftyGif (3.0.0)
+  - TwitterCore (2.7.0):
     - Fabric
-  - TwitterKit (2.0.2):
-    - TwitterCore (= 2.0.2)
+  - TwitterKit (2.7.0):
+    - TwitterCore (= 2.7.0)
 
 DEPENDENCIES:
   - Alamofire
@@ -21,13 +21,15 @@ DEPENDENCIES:
   - TwitterKit
 
 SPEC CHECKSUMS:
-  Alamofire: c19a627cefd6a95f840401c49ab1f124e07f54ee
-  Fabric: caf7580c725e64db144f610ac65cd60956911dc7
-  LazyObject: 9cd047da18d5c6991a940a684c7e983c5296612a
-  SDWebImage: c325cf02c30337336b95beff20a13df489ec0ec9
-  SnapKit: 5fce3c1bbbf1fbd31de9aa92f33eb9fa03f15650
-  SwiftyGif: ede36725afc8fe16273ffc3418818d51af681a95
-  TwitterCore: 0f44d8980a6879d5205dcb4e010d15e643e56fa0
-  TwitterKit: c4e40f289a3d7cc9fab9f241edd7502385468b65
+  Alamofire: aa2e09d871c9160ac53c90e83c68064a94e3dfbe
+  Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
+  LazyObject: d549154de50df47120ac1065a89b19a0bcee4690
+  SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
+  SnapKit: 2e456761aa92d4d4067a7a5594c18769d451a8ad
+  SwiftyGif: d6b4d63de2a2a5134d8b54ba5719837319d77ef0
+  TwitterCore: fbdbeaf6d2d20cf7c7aa4136fe5173c1c85df2e2
+  TwitterKit: 97e729ceea041d174126235bf6ff67dcf37772d4
 
-COCOAPODS: 0.39.0
+PODFILE CHECKSUM: 6baaafd0072cd541c59ae74c29056d861f5a4ea0
+
+COCOAPODS: 1.1.0.rc.2

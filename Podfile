@@ -6,20 +6,34 @@ inhibit_all_warnings!
 # use frameworks for Swift
 use_frameworks!
 
-# Twitter Login
-pod 'TwitterKit'
+project 'FoodDictator'
 
-# Networking
-pod 'Alamofire'
+target 'FoodDictator' do
 
-# Autolayout
-pod 'SnapKit'
+  # Twitter Login
+  pod 'TwitterKit'
 
-# Models
-pod 'LazyObject'
+  # Networking
+  pod 'Alamofire'
 
-# Image Downloading
-pod 'SDWebImage'
+  # Autolayout
+  pod 'SnapKit'
 
-# GIF
-pod 'SwiftyGif'
+  # Models
+  pod 'LazyObject'
+
+  # Image Downloading
+  pod 'SDWebImage'
+
+  # GIF
+  pod 'SwiftyGif'
+  
+end
+
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+      config.build_settings['SWIFT_VERSION'] = '3.0'
+    end
+  end
+end

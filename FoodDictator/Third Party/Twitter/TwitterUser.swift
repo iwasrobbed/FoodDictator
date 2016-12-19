@@ -15,7 +15,7 @@ class TwitterUser: LazyObject {
     var photoURLString: String {
         let string: String = try! objectFor("profile_image_url")
         // Returns a larger image by removing the `normal` scoping
-        return string.stringByReplacingOccurrencesOfString("_normal.jpeg", withString: ".jpeg")
+        return string.replacingOccurrences(of: "_normal.jpeg", with: ".jpeg")
     }
     
 }
