@@ -10,7 +10,7 @@ import UIKit
 
 typealias TextFieldBeginEditingBlock = () -> Void
 typealias TextFieldEndEditingBlock = () -> Void
-typealias TextFieldChangedBlock = (text: String) -> Void
+typealias TextFieldChangedBlock = (_ text: String) -> Void
 typealias TextFieldCancelBlock = () -> Void
 
 class TextField : UIView {
@@ -25,17 +25,17 @@ class TextField : UIView {
     }
 
     enum RoundedCornerStyle: Int {
-        case Top, Bottom, All, None
+        case top, bottom, all, none
 
         func toRectCorner() -> UIRectCorner? {
             switch self {
-            case .Top:
-                return [.TopLeft , .TopRight]
-            case .Bottom:
-                return [.BottomLeft , .BottomRight]
-            case .All:
-                return [.TopLeft , .TopRight, .BottomLeft, .BottomRight]
-            case .None:
+            case .top:
+                return [.topLeft , .topRight]
+            case .bottom:
+                return [.bottomLeft , .bottomRight]
+            case .all:
+                return [.topLeft , .topRight, .bottomLeft, .bottomRight]
+            case .none:
                 return nil
             }
         }
@@ -73,8 +73,8 @@ class TextField : UIView {
 
      - returns: A customized textfield
      */
-    required init(cornerStyle: RoundedCornerStyle = .None, placeholder: String, cancellable: Bool = false) {
-        super.init(frame: CGRectZero)
+    required init(cornerStyle: RoundedCornerStyle = .none, placeholder: String, cancellable: Bool = false) {
+        super.init(frame: CGRect.zero)
 
         setupView(cornerStyle, placeholder: placeholder, cancellable: cancellable)
         setupNotifications()
@@ -85,62 +85,62 @@ class TextField : UIView {
     }
 
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
 
     // MARK: - First Responder
 
-    override func isFirstResponder() -> Bool {
-        return textField.isFirstResponder()
+    override var isFirstResponder : Bool {
+        return textField.isFirstResponder
     }
 
     // MARK: - Rounding Corners
 
     // We do this since we need to wait for auto layout to draw
-    override func drawRect(rect: CGRect) {
+    override func draw(_ rect: CGRect) {
         let borderColor = UIColor.dictatorTextFieldBorder()
         let borderWidth: CGFloat = 1
 
         if let cornerRect = roundedCornerStyle!.toRectCorner() {
             container.round(cornerRect, radius: 10, borderColor: borderColor, borderWidth: borderWidth)
         } else {
-            container.round([.TopLeft, .TopRight, .BottomLeft , .BottomRight], radius: 0, borderColor: borderColor, borderWidth: borderWidth)
+            container.round([.topLeft, .topRight, .bottomLeft , .bottomRight], radius: 0, borderColor: borderColor, borderWidth: borderWidth)
         }
     }
 
     // MARK: - Private Properties
 
-    private let container = UIView()
-    private let textField = UITextField()
-    lazy private var cancelButton: UIButton = {
+    fileprivate let container = UIView()
+    fileprivate let textField = UITextField()
+    lazy fileprivate var cancelButton: UIButton = {
         let button = UIButton.dictatorImageOnly(UIImage(named: "SearchCancel")!, target: self, action: #selector(TextField.cancelTapped))
-        button.enabled = false
+        button.isEnabled = false
         return button
     }()
-    private var roundedCornerStyle : RoundedCornerStyle?
+    fileprivate var roundedCornerStyle : RoundedCornerStyle?
 
 }
 
 // MARK: - Private API
 
-private extension TextField {
+fileprivate extension TextField {
 
     // MARK: - View Setup
 
-    func setupView(cornerStyle: RoundedCornerStyle = .None, placeholder: String, cancellable: Bool) {
-        backgroundColor = UIColor.clearColor()
+    func setupView(_ cornerStyle: RoundedCornerStyle = .none, placeholder: String, cancellable: Bool) {
+        backgroundColor = UIColor.clear
         roundedCornerStyle = cornerStyle
 
         container.backgroundColor = .dictatorTextField()
         addSubview(container)
-        container.snp_makeConstraints { (make) -> Void in
+        container.snp.makeConstraints { (make) -> Void in
             make.edges.equalTo(self)
         }
 
         let cancelDiameter: CGFloat = 40
         if cancellable {
             container.addSubview(cancelButton)
-            cancelButton.snp_makeConstraints(closure: { (make) in
+            cancelButton.snp.makeConstraints({ (make) in
                 make.size.equalTo(cancelDiameter)
                 make.centerY.right.equalTo(container)
             })
@@ -149,10 +149,10 @@ private extension TextField {
         textField.font = .dictatorTextField()
         textField.delegate = self
         textField.placeholder = placeholder
-        textField.autocorrectionType = .No
-        textField.autocapitalizationType = .None
+        textField.autocorrectionType = .no
+        textField.autocapitalizationType = .none
         container.addSubview(textField)
-        textField.snp_makeConstraints { (make) -> Void in
+        textField.snp.makeConstraints { (make) -> Void in
             let hPadding: CGFloat = 10
             let vPadding: CGFloat = 5
             let rightInset = cancellable ? cancelDiameter + hPadding : hPadding
@@ -163,7 +163,7 @@ private extension TextField {
     // MARK: - Notifications
 
     func setupNotifications() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(TextField.textFieldDidChange), name: UITextFieldTextDidChangeNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(TextField.textFieldDidChange), name: NSNotification.Name.UITextFieldTextDidChange, object: nil)
     }
 
     // MARK: - Actions
@@ -171,7 +171,7 @@ private extension TextField {
     @objc func cancelTapped() {
         textField.text = ""
         textField.resignFirstResponder()
-        cancelButton.enabled = false
+        cancelButton.isEnabled = false
 
         cancelBlock?()
     }
@@ -182,23 +182,23 @@ private extension TextField {
 
 extension TextField: UITextFieldDelegate {
 
-    func textFieldDidBeginEditing(textField: UITextField) {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
         beginEditingBlock?()
 
-        cancelButton.enabled = true
+        cancelButton.isEnabled = true
     }
 
     func textFieldDidChange() {
-        cancelButton.enabled = textField.isFirstResponder()
+        cancelButton.isEnabled = textField.isFirstResponder
 
-        changedBlock?(text: textField.text!)
+        changedBlock?(textField.text!)
     }
 
-    func textFieldDidEndEditing(textField: UITextField) {
+    func textFieldDidEndEditing(_ textField: UITextField) {
         endEditingBlock?()
     }
 
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return false
     }

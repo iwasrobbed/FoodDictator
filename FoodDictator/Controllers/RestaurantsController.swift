@@ -29,11 +29,11 @@ class RestaurantsController: BaseController {
 
     // MARK: - Private Properties
 
-    private let hud = HUD()
+    fileprivate let hud = HUD()
     var restaurants = [Restaurant]()
 
-    private lazy var searchField: TextField = {
-        let search = TextField(cornerStyle: .All, placeholder: RestaurantLocalizations.SearchPlaceholder, cancellable: false)
+    fileprivate lazy var searchField: TextField = {
+        let search = TextField(cornerStyle: .all, placeholder: RestaurantLocalizations.SearchPlaceholder, cancellable: false)
         search.changedBlock = { [weak self] (text: String) in
             GooglePlacesManager.sharedManager.cancelAllFetches()
 
@@ -46,11 +46,11 @@ class RestaurantsController: BaseController {
     }()
 
 
-    private let tableView: UITableView = {
+    fileprivate let tableView: UITableView = {
         let table = UITableView()
-        table.tableFooterView = UIView(frame: CGRectZero)
+        table.tableFooterView = UIView(frame: CGRect.zero)
         table.rowHeight = 60
-        table.registerClass(RestaurantCell.classForCoder(), forCellReuseIdentifier:RestaurantCell.cellReuseIdentifier)
+        table.register(RestaurantCell.classForCoder(), forCellReuseIdentifier:RestaurantCell.cellReuseIdentifier)
         return table
     }()
 
@@ -64,7 +64,7 @@ private extension RestaurantsController {
 
     func setupView() {
         // TODO: Set specific city or "nearby" one day
-        let title = String(format: RestaurantLocalizations.CityRestaurantsFormat, arguments: ["SJ"]).uppercaseString
+        let title = String(format: RestaurantLocalizations.CityRestaurantsFormat, arguments: ["SJ"]).uppercased()
         setupNavigation(title)
 
         setupSearchField()
@@ -73,7 +73,7 @@ private extension RestaurantsController {
 
     func setupSearchField() {
         view.addSubview(searchField)
-        searchField.snp_makeConstraints { (make) -> Void in
+        searchField.snp.makeConstraints { (make) -> Void in
             make.width.equalTo(view).multipliedBy(TextField.widthMultiplier.full)
             make.centerX.equalTo(view)
             make.height.equalTo(TextField.height.search)
@@ -85,15 +85,15 @@ private extension RestaurantsController {
         tableView.delegate = self
         tableView.dataSource = self
         view.addSubview(tableView)
-        tableView.snp_makeConstraints { (make) -> Void in
+        tableView.snp.makeConstraints { (make) -> Void in
             make.left.right.bottom.equalTo(view)
-            make.top.equalTo(searchField.snp_bottom).offset(10)
+            make.top.equalTo(searchField.snp.bottom).offset(10)
         }
     }
 
     // MARK: - Fetching Restaurants
 
-    func searchRestaurants(query: String = "Pizza") {
+    func searchRestaurants(_ query: String = "Pizza") {
         hud.show()
 
         GooglePlacesManager.sharedManager.fetchPlacesNearViv(query, type: .restaurant, success: { (places) in
@@ -117,12 +117,12 @@ private extension RestaurantsController {
 
 extension RestaurantsController: UITableViewDataSource, UITableViewDelegate {
 
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return restaurants.count
     }
 
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(RestaurantCell.cellReuseIdentifier) as! RestaurantCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: RestaurantCell.cellReuseIdentifier) as! RestaurantCell
 
         let restaurant = restaurants[indexPath.row]
         cell.nameLabel.text = restaurant.name

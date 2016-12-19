@@ -9,8 +9,8 @@
 import Foundation
 import Alamofire
 
-typealias GoogleErrorBlock = (errorMessage: String) -> Void
-typealias GooglePlacesBlock = (places: [GooglePlace]) -> Void
+typealias GoogleErrorBlock = (_ errorMessage: String) -> Void
+typealias GooglePlacesBlock = (_ places: [GooglePlace]) -> Void
 
 enum GooglePlaceType {
     case restaurant
@@ -50,16 +50,16 @@ class GooglePlacesManager {
      then you'd want to have bounded queries based on user location, place type, etc. and setup
      a proper API client.
      */
-    func fetchPlacesNearViv(query: String, type: GooglePlaceType = .restaurant, success: GooglePlacesBlock? = nil, error: GoogleErrorBlock? = nil) {
+    func fetchPlacesNearViv(_ query: String, type: GooglePlaceType = .restaurant, success: GooglePlacesBlock? = nil, error: GoogleErrorBlock? = nil) {
         let queryString = String(format: queryFormat, arguments: [pipedQueryFrom(query), type.toString(), radius, language, apiKey])
-        guard let escapedQuery = queryString.stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet()) else {
+        guard let escapedQuery = queryString.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else {
             fatalError("Malformed query string when calling into Google Places API")
         }
         let endpoint = baseURL + escapedQuery
 
         Alamofire.request(.GET, endpoint, parameters: nil).responseJSON { response in
             if let json = response.result.value {
-                guard let json = json as? [String: AnyObject], places = self.placesFromJSON(json) else {
+                guard let json = json as? [String: AnyObject], let places = self.placesFromJSON(json) else {
                     error?(errorMessage: "Could not parse JSON or it was empty")
                     return
                 }
@@ -82,7 +82,7 @@ class GooglePlacesManager {
     func cancelAllFetches() {
         Alamofire.Manager.sharedInstance.session.getTasksWithCompletionHandler { dataTasks, uploadTasks, downloadTasks in
             for task in dataTasks {
-                if let originalRequest = task.originalRequest where originalRequest.URLString.containsString(self.baseURL) {
+                if let originalRequest = task.originalRequest, originalRequest.URLString.containsString(self.baseURL) {
                     task.cancel()
                 }
             }
@@ -102,21 +102,21 @@ class GooglePlacesManager {
 
 private extension GooglePlacesManager {
 
-    func pipedQueryFrom(query: String) -> String {
-        let queryTerms = query.componentsSeparatedByString(" ")
+    func pipedQueryFrom(_ query: String) -> String {
+        let queryTerms = query.components(separatedBy: " ")
         guard queryTerms.count > 1 else { return query }
 
-        return queryTerms.joinWithSeparator("|")
+        return queryTerms.joined(separator: "|")
     }
 
-    func placesFromJSON(json: [String: AnyObject]) -> [GooglePlace]? {
+    func placesFromJSON(_ json: [String: AnyObject]) -> [GooglePlace]? {
         guard let results = json["results"] as? [AnyObject] else { return nil }
         guard results.count != 0 else { return nil }
 
         var places = [GooglePlace]()
         for placeDictionary in results {
             let placeDictionary = placeDictionary as! [String: AnyObject]
-            places.append(GooglePlace(dictionary: placeDictionary))
+            places.append(GooglePlace(dictionary: placeDictionary as NSDictionary))
         }
 
         return places

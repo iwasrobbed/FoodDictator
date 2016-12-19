@@ -24,9 +24,9 @@ extension UIFont {
 
     // MARK: - Dictator Generic Fonts
 
-    public class func dictatorRegular(size: Float = 16) -> UIFont   { return dictatorFont(.Regular, size: size) }
-    public class func dictatorMedium(size: Float = 16) -> UIFont    { return dictatorFont(.Medium, size: size) }
-    public class func dictatorBold(size: Float = 16) -> UIFont      { return dictatorFont(.Bold, size: size) }
+    public class func dictatorRegular(_ size: Float = 16) -> UIFont   { return dictatorFont(.regular, size: size) }
+    public class func dictatorMedium(_ size: Float = 16) -> UIFont    { return dictatorFont(.medium, size: size) }
+    public class func dictatorBold(_ size: Float = 16) -> UIFont      { return dictatorFont(.bold, size: size) }
 }
 
 // MARK: - Private API
@@ -37,30 +37,30 @@ private extension UIFont {
      Dictator font styles
      */
     enum dictatorFontStyle: Int {
-        case Regular, Medium, Bold
+        case regular, medium, bold
 
-        func toFont(size: Float) -> UIFont {
+        func toFont(_ size: Float) -> UIFont {
             var fontName = ""
             switch self {
-            case .Regular:
+            case .regular:
                 fontName = "Texta-Regular"
-            case .Medium:
+            case .medium:
                 fontName = "Texta-Medium"
-            case .Bold:
+            case .bold:
                 fontName = "Texta-Bold"
             }
             return UIFont(name: fontName, size: CGFloat(size))!
         }
     }
 
-    class func dictatorFont(style: dictatorFontStyle, size: Float) -> UIFont {
+    class func dictatorFont(_ style: dictatorFontStyle, size: Float) -> UIFont {
         let scaledSize = ceilf(size * scaleFactor())
         return style.toFont(scaledSize)
     }
 
     // TODO Proper font scaling
     class func scaleFactor() -> Float {
-        return UIScreen.mainScreen().scale > 2.9 ? 1.0 : 0.8
+        return UIScreen.main.scale > 2.9 ? 1.0 : 0.8
     }
     
 }

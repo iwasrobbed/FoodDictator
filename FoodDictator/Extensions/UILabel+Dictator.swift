@@ -12,30 +12,30 @@ import UIKit
 
 extension UILabel {
 
-    class func dictatorNavigationLabel(title: String) -> UILabel {
-        return dictatorLabel(title.uppercaseString, font: .dictatorNavigationTitle(), color: .dictatorBlack(), alignment: .Center)
+    class func dictatorNavigationLabel(_ title: String) -> UILabel {
+        return dictatorLabel(title.uppercased(), font: .dictatorNavigationTitle(), color: .dictatorBlack(), alignment: .center)
     }
 
-    class func dictatorHeader4Label(title: String) -> UILabel {
-        return dictatorLabel(title, font: .dictatorRegular(28), alignment: .Center)
+    class func dictatorHeader4Label(_ title: String) -> UILabel {
+        return dictatorLabel(title, font: .dictatorRegular(28), alignment: .center)
     }
 
-    class func dictatorRegularLabel(title: String) -> UILabel {
+    class func dictatorRegularLabel(_ title: String) -> UILabel {
         let label = dictatorLabel(title, font: .dictatorRegular(18))
-        label.lineBreakMode = .ByTruncatingTail
+        label.lineBreakMode = .byTruncatingTail
         label.numberOfLines = 1
         label.sizeToFit()
         return label
     }
 
-    class func dictatorLabel(title: String, font: UIFont, color: UIColor = .dictatorBlack(), alignment: NSTextAlignment = .Left) -> UILabel {
+    class func dictatorLabel(_ title: String, font: UIFont, color: UIColor = .dictatorBlack(), alignment: NSTextAlignment = .left) -> UILabel {
         let label = UILabel()
         label.text = title
         label.textAlignment = alignment
         label.textColor = color
         label.font = font
         label.numberOfLines = 0
-        label.lineBreakMode = .ByWordWrapping
+        label.lineBreakMode = .byWordWrapping
         label.sizeToFit()
         return label
     }

@@ -25,20 +25,20 @@ class FTUEController: BaseController {
 
     // MARK: - Private Properties
 
-    private let dictatorLogo: UIImageView = {
+    fileprivate let dictatorLogo: UIImageView = {
         return UIImageView(image: UIImage(named: "LaunchLogo"))
     }()
-    private var logoCenterYConstraint: Constraint?
+    fileprivate var logoCenterYConstraint: Constraint?
 
-    private let oneMealLabel: UILabel = {
+    fileprivate let oneMealLabel: UILabel = {
         return UILabel.dictatorHeader4Label(FTUELocalizations.OneMealToRuleThemAll)
     }()
 
-    private let gamesBeginLabel: UILabel = {
-        return UILabel.dictatorLabel(FTUELocalizations.LetTheGamesBegin, font: .dictatorRegular(20), color: .dictatorGrayText(), alignment: .Center)
+    fileprivate let gamesBeginLabel: UILabel = {
+        return UILabel.dictatorLabel(FTUELocalizations.LetTheGamesBegin, font: .dictatorRegular(20), color: .dictatorGrayText(), alignment: .center)
     }()
     
-    lazy private var signInButton: UIButton = {
+    lazy fileprivate var signInButton: UIButton = {
         return UIButton.dictatorTwitter(self, action: #selector(FTUEController.signInTapped))
     }()
 
@@ -60,7 +60,7 @@ private extension FTUEController {
 
     func setupLogoArea() {
         view.addSubview(dictatorLogo)
-        dictatorLogo.snp_makeConstraints { (make) -> Void in
+        dictatorLogo.snp.makeConstraints { (make) -> Void in
             make.centerX.equalTo(view)
             logoCenterYConstraint = make.centerY.equalTo(view).constraint
         }
@@ -70,7 +70,7 @@ private extension FTUEController {
         signInButton.alpha = 0
         view.addSubview(signInButton)
 
-        signInButton.snp_makeConstraints { (make) -> Void in
+        signInButton.snp.makeConstraints { (make) -> Void in
             make.width.equalTo(view).multipliedBy(UIButton.dictatorConfig.buttonWidthPercentage)
             make.bottom.equalTo(view).offset(-20)
             make.height.equalTo(UIButton.dictatorConfig.buttonHeight)
@@ -84,16 +84,16 @@ private extension FTUEController {
         view.addSubview(oneMealLabel)
         view.addSubview(gamesBeginLabel)
 
-        oneMealLabel.snp_makeConstraints { (make) in
+        oneMealLabel.snp.makeConstraints { (make) in
             make.width.centerX.equalTo(view)
             make.height.equalTo(40)
-            make.top.equalTo(dictatorLogo.snp_bottom).offset(30)
+            make.top.equalTo(dictatorLogo.snp.bottom).offset(30)
         }
 
-        gamesBeginLabel.snp_makeConstraints { (make) in
+        gamesBeginLabel.snp.makeConstraints { (make) in
             make.width.centerX.equalTo(view)
             make.height.equalTo(30)
-            make.bottom.equalTo(signInButton.snp_top).offset(-15)
+            make.bottom.equalTo(signInButton.snp.top).offset(-15)
         }
     }
 
@@ -102,18 +102,18 @@ private extension FTUEController {
     func animateView() {
         view.layoutIfNeeded()
 
-        logoCenterYConstraint!.updateOffset(-50)
+        logoCenterYConstraint!.update(offset: -50)
         dictatorLogo.setNeedsLayout()
 
-        UIView.animateWithDuration(1.1, delay: 0.5,
+        UIView.animate(withDuration: 1.1, delay: 0.5,
                                    usingSpringWithDamping: 0.5,
                                    initialSpringVelocity: 0.8,
-                                   options: .CurveEaseInOut,
+                                   options: UIViewAnimationOptions(),
                                    animations: { () -> Void in
                                     self.dictatorLogo.layoutIfNeeded()
             }, completion: nil)
 
-        UIView.animateWithDuration(0.3, delay: 0.65, options: .CurveEaseIn, animations: { () -> Void in
+        UIView.animate(withDuration: 0.3, delay: 0.65, options: .curveEaseIn, animations: { () -> Void in
             self.signInButton.alpha = 1
             self.oneMealLabel.alpha = 1
             self.gamesBeginLabel.alpha = 1
@@ -123,19 +123,19 @@ private extension FTUEController {
     // MARK: - Actions
     
     @objc func signInTapped() {
-        signInButton.enabled = false
+        signInButton.isEnabled = false
 
         TwitterManager.sharedManager.login({ (session) in
             self.navigationController?.pushViewController(ChooseFriendsController(), animated: true)
         }) { (errorMessage) in
-            self.signInButton.enabled = true
+            self.signInButton.isEnabled = true
             self.showTwitterErrorMessage(errorMessage)
         }
     }
 
     // MARK - Alert
 
-    func showTwitterErrorMessage(message: String) {
+    func showTwitterErrorMessage(_ message: String) {
         let errorMessage = String(format: TwitterLocalizations.LoginErrorFormat, arguments: [message])
         AlertView.showErrorMessage(errorMessage, viewController: self)
     }
