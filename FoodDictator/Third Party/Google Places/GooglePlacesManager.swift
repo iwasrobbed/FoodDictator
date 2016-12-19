@@ -57,21 +57,21 @@ class GooglePlacesManager {
         }
         let endpoint = baseURL + escapedQuery
 
-        Alamofire.request(.GET, endpoint, parameters: nil).responseJSON { response in
+        Alamofire.request(endpoint, method: .get, parameters: nil).responseJSON { (response) in
             if let json = response.result.value {
                 guard let json = json as? [String: AnyObject], let places = self.placesFromJSON(json) else {
-                    error?(errorMessage: "Could not parse JSON or it was empty")
+                    error?("Could not parse JSON or it was empty")
                     return
                 }
-
-                success?(places: places)
+                
+                success?(places)
             } else {
                 guard let apiError = response.result.error else {
-                    error?(errorMessage: "Bad response")
+                    error?("Bad response")
                     return
                 }
-
-                error?(errorMessage: apiError.localizedDescription)
+                
+                error?(apiError.localizedDescription)
             }
         }
     }
@@ -80,13 +80,13 @@ class GooglePlacesManager {
       Cancels any Google Place API calls
      */
     func cancelAllFetches() {
-        Alamofire.Manager.sharedInstance.session.getTasksWithCompletionHandler { dataTasks, uploadTasks, downloadTasks in
-            for task in dataTasks {
-                if let originalRequest = task.originalRequest, originalRequest.URLString.containsString(self.baseURL) {
-                    task.cancel()
-                }
-            }
-        }
+//        Alamofire.Manager.sharedInstance.session.getTasksWithCompletionHandler { dataTasks, uploadTasks, downloadTasks in
+//            for task in dataTasks {
+//                if let originalRequest = task.originalRequest, originalRequest.URLString.containsString(self.baseURL) {
+//                    task.cancel()
+//                }
+//            }
+//        }
     }
 
     // MARK: - Private Properties

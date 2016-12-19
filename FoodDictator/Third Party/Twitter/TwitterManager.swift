@@ -59,20 +59,20 @@ class TwitterManager {
      - parameter error:          Called during an error or bad data event
      */
     func login(_ success: TwitterLoginSuccessBlock? = nil, error: TwitterErrorBlock? = nil) {
-        twitterInstance.logIn { (session: TWTRSession?, loginError: NSError?) in
+        twitterInstance.logIn { (session, loginError) in
             if let loginError = loginError {
-                error?(errorMessage: loginError.localizedDescription)
+                error?(loginError.localizedDescription)
                 return
             }
-
+            
             guard let session = session else {
-                error?(errorMessage: TwitterLocalizations.BadLoginResultData)
+                error?(TwitterLocalizations.BadLoginResultData)
                 return
             }
-
+            
             self.activeSession = session
-            success?(session: session)
-        } as! TWTRLogInCompletion as! TWTRLogInCompletion as! TWTRLogInCompletion as! TWTRLogInCompletion as! TWTRLogInCompletion as! TWTRLogInCompletion as! TWTRLogInCompletion as! TWTRLogInCompletion
+            success?(session)
+        }
     }
 
     /**
@@ -94,22 +94,22 @@ class TwitterManager {
         guard let activeSession = activeSession else {
             fatalError("Can only call into Twitter API with an active session")
         }
-
-        apiClient.loadUser(withID: activeSession.userID) { (user: TWTRUser?, fetchError: NSError?) in
+        
+        apiClient.loadUser(withID: activeSession.userID, completion: { (user, fetchError) in
             if let fetchError = fetchError {
-                error?(errorMessage: fetchError.localizedDescription)
+                error?(fetchError.localizedDescription)
                 return
             }
-
+            
             guard let user = user else {
-                error?(errorMessage: TwitterLocalizations.BadUserFetch)
+                error?(TwitterLocalizations.BadUserFetch)
                 return
             }
-
+            
             self.twitterUserID = user.userID
             self.currentHuman = Human(fullName: user.name, screenName: user.screenName, photoURLString: user.profileImageLargeURL)
-            success?(human: self.currentHuman!)
-        } as! TWTRLoadUserCompletion as! TWTRLoadUserCompletion as! TWTRLoadUserCompletion as! TWTRLoadUserCompletion as! TWTRLoadUserCompletion as! TWTRLoadUserCompletion as! TWTRLoadUserCompletion as! TWTRLoadUserCompletion as! TWTRLoadUserCompletion as! TWTRLoadUserCompletion as! TWTRLoadUserCompletion as! TWTRLoadUserCompletion as! TWTRLoadUserCompletion as! TWTRLoadUserCompletion as! TWTRLoadUserCompletion as! TWTRLoadUserCompletion
+            success?(self.currentHuman!)
+        })
     }
 
     /**
@@ -156,19 +156,19 @@ private extension TwitterManager {
 
     func fetchFromAPI(_ endpoint: String, parameters: [String: AnyObject]?, success: TwitterAPISuccessBlock? = nil, error: TwitterErrorBlock? = nil) {
         let request = apiClient.urlRequest(withMethod: "GET", url: endpoint, parameters: parameters, error: nil)
-        apiClient.sendTwitterRequest(request) { (response: URLResponse?, data: Data?, connectionError: NSError?) -> Void in
+        apiClient.sendTwitterRequest(request, completion: { (response, data, connectionError) in
             if let connectionError = connectionError {
-                error?(errorMessage: connectionError.localizedDescription)
+                error?(connectionError.localizedDescription)
                 return
             }
-
+            
             do {
                 let json = try JSONSerialization.jsonObject(with: data!, options: [])
-                success?(json: json)
+                success?(json as AnyObject)
             } catch let jsonError as NSError {
-                error?(errorMessage: jsonError.localizedDescription)
+                error?(jsonError.localizedDescription)
             }
-        } as! TWTRNetworkCompletion as! TWTRNetworkCompletion as! TWTRNetworkCompletion as! TWTRNetworkCompletion as! TWTRNetworkCompletion as! TWTRNetworkCompletion as! TWTRNetworkCompletion as! TWTRNetworkCompletion as! TWTRNetworkCompletion 
+        })
     }
 
     func fetchHumansFromEndpoint(_ endpoint: String, success: TwitterHumansBlock? = nil, error: TwitterErrorBlock? = nil) {
